@@ -1,0 +1,234 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="nMDCATPrepTestModelStoreContainer" CdmEntityContainer="nMDCATPrepTestEntities">
+    <EntitySetMapping Name="classDomains">
+      <EntityTypeMapping TypeName="nMDCATPrepTestModel.classDomain">
+        <MappingFragment StoreEntitySet="classDomain">
+          <ScalarProperty Name="classTitle" ColumnName="classTitle" />
+          <ScalarProperty Name="classid" ColumnName="classid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="departmentRankings">
+      <EntityTypeMapping TypeName="nMDCATPrepTestModel.departmentRanking">
+        <MappingFragment StoreEntitySet="departmentRanking">
+          <ScalarProperty Name="departmentName" ColumnName="departmentName" />
+          <ScalarProperty Name="departmentRankingId" ColumnName="departmentRankingId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Employees">
+      <EntityTypeMapping TypeName="nMDCATPrepTestModel.Employee">
+        <MappingFragment StoreEntitySet="Employee">
+          <ScalarProperty Name="subjectId" ColumnName="subjectId" />
+          <ScalarProperty Name="userId" ColumnName="userId" />
+          <ScalarProperty Name="Contact" ColumnName="Contact" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="DOB" ColumnName="DOB" />
+          <ScalarProperty Name="employeeFName" ColumnName="employeeFName" />
+          <ScalarProperty Name="employeeName" ColumnName="employeeName" />
+          <ScalarProperty Name="employeeId" ColumnName="employeeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Privileges">
+      <EntityTypeMapping TypeName="nMDCATPrepTestModel.Privilege">
+        <MappingFragment StoreEntitySet="Privilege">
+          <ScalarProperty Name="dateModified" ColumnName="dateModified" />
+          <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
+          <ScalarProperty Name="dateCreate" ColumnName="dateCreate" />
+          <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+          <ScalarProperty Name="privilegeTitle" ColumnName="privilegeTitle" />
+          <ScalarProperty Name="privilegeId" ColumnName="privilegeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="questionTypeDomains">
+      <EntityTypeMapping TypeName="nMDCATPrepTestModel.questionTypeDomain">
+        <MappingFragment StoreEntitySet="questionTypeDomain">
+          <ScalarProperty Name="typeTitle" ColumnName="typeTitle" />
+          <ScalarProperty Name="qType" ColumnName="qType" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Roles">
+      <EntityTypeMapping TypeName="nMDCATPrepTestModel.Role">
+        <MappingFragment StoreEntitySet="Role">
+          <ScalarProperty Name="dateModified" ColumnName="dateModified" />
+          <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
+          <ScalarProperty Name="dateCreate" ColumnName="dateCreate" />
+          <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+          <ScalarProperty Name="roleTitle" ColumnName="roleTitle" />
+          <ScalarProperty Name="mainRoleId" ColumnName="mainRoleId" />
+          <ScalarProperty Name="roleId" ColumnName="roleId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="students">
+      <EntityTypeMapping TypeName="nMDCATPrepTestModel.student">
+        <MappingFragment StoreEntitySet="student">
+          <ScalarProperty Name="departmentName" ColumnName="departmentName" />
+          <ScalarProperty Name="universityName" ColumnName="universityName" />
+          <ScalarProperty Name="studentPicture" ColumnName="studentPicture" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="userName" ColumnName="userName" />
+          <ScalarProperty Name="contact" ColumnName="contact" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="DOB" ColumnName="DOB" />
+          <ScalarProperty Name="gender" ColumnName="gender" />
+          <ScalarProperty Name="studentFName" ColumnName="studentFName" />
+          <ScalarProperty Name="studentName" ColumnName="studentName" />
+          <ScalarProperty Name="studentId" ColumnName="studentId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="studentAppearTests">
+      <EntityTypeMapping TypeName="nMDCATPrepTestModel.studentAppearTest">
+        <MappingFragment StoreEntitySet="studentAppearTest">
+          <ScalarProperty Name="correctChoice" ColumnName="correctChoice" />
+          <ScalarProperty Name="questionId" ColumnName="questionId" />
+          <ScalarProperty Name="studentId" ColumnName="studentId" />
+          <ScalarProperty Name="testId" ColumnName="testId" />
+          <ScalarProperty Name="studentAppearId" ColumnName="studentAppearId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="studentRegisterForTests">
+      <EntityTypeMapping TypeName="nMDCATPrepTestModel.studentRegisterForTest">
+        <MappingFragment StoreEntitySet="studentRegisterForTest">
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="testStatus" ColumnName="testStatus" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="userName" ColumnName="userName" />
+          <ScalarProperty Name="testId" ColumnName="testId" />
+          <ScalarProperty Name="studentId" ColumnName="studentId" />
+          <ScalarProperty Name="srTestId" ColumnName="srTestId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="subjects">
+      <EntityTypeMapping TypeName="nMDCATPrepTestModel.subject">
+        <MappingFragment StoreEntitySet="subject">
+          <ScalarProperty Name="class" ColumnName="class" />
+          <ScalarProperty Name="subjectTitle" ColumnName="subjectTitle" />
+          <ScalarProperty Name="subjectid" ColumnName="subjectid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="nMDCATPrepTestModel.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="definition" ColumnName="definition" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblAppLlicenses">
+      <EntityTypeMapping TypeName="nMDCATPrepTestModel.tblAppLlicense">
+        <MappingFragment StoreEntitySet="tblAppLlicense">
+          <ScalarProperty Name="gracePeriofEnd" ColumnName="gracePeriofEnd" />
+          <ScalarProperty Name="gracePeriodStart" ColumnName="gracePeriodStart" />
+          <ScalarProperty Name="gracePeriod" ColumnName="gracePeriod" />
+          <ScalarProperty Name="licenseKey" ColumnName="licenseKey" />
+          <ScalarProperty Name="isActive" ColumnName="isActive" />
+          <ScalarProperty Name="dateTimeLicenseExpire" ColumnName="dateTimeLicenseExpire" />
+          <ScalarProperty Name="numberOfStudent" ColumnName="numberOfStudent" />
+          <ScalarProperty Name="transectionsCount" ColumnName="transectionsCount" />
+          <ScalarProperty Name="numberOfRecords" ColumnName="numberOfRecords" />
+          <ScalarProperty Name="machineKey" ColumnName="machineKey" />
+          <ScalarProperty Name="timeSpan" ColumnName="timeSpan" />
+          <ScalarProperty Name="dateStampPrevious" ColumnName="dateStampPrevious" />
+          <ScalarProperty Name="timeStampPrevious" ColumnName="timeStampPrevious" />
+          <ScalarProperty Name="uptoDate" ColumnName="uptoDate" />
+          <ScalarProperty Name="dateTimeInitiated" ColumnName="dateTimeInitiated" />
+          <ScalarProperty Name="licenseId" ColumnName="licenseId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tests">
+      <EntityTypeMapping TypeName="nMDCATPrepTestModel.test">
+        <MappingFragment StoreEntitySet="test">
+          <ScalarProperty Name="testConductionDate" ColumnName="testConductionDate" />
+          <ScalarProperty Name="graceTime" ColumnName="graceTime" />
+          <ScalarProperty Name="endTime" ColumnName="endTime" />
+          <ScalarProperty Name="startTime" ColumnName="startTime" />
+          <ScalarProperty Name="testTitle" ColumnName="testTitle" />
+          <ScalarProperty Name="testId" ColumnName="testId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="testQuestions">
+      <EntityTypeMapping TypeName="nMDCATPrepTestModel.testQuestion">
+        <MappingFragment StoreEntitySet="testQuestion">
+          <ScalarProperty Name="marks" ColumnName="marks" />
+          <ScalarProperty Name="testId" ColumnName="testId" />
+          <ScalarProperty Name="questionId" ColumnName="questionId" />
+          <ScalarProperty Name="testQuestionId" ColumnName="testQuestionId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="testQuestionDatabanks">
+      <EntityTypeMapping TypeName="nMDCATPrepTestModel.testQuestionDatabank">
+        <MappingFragment StoreEntitySet="testQuestionDatabank">
+          <ScalarProperty Name="correctChoiceForAll" ColumnName="correctChoiceForAll" />
+          <ScalarProperty Name="qType" ColumnName="qType" />
+          <ScalarProperty Name="chapter" ColumnName="chapter" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="correctChoice" ColumnName="correctChoice" />
+          <ScalarProperty Name="questionClassId" ColumnName="questionClassId" />
+          <ScalarProperty Name="subjectId" ColumnName="subjectId" />
+          <ScalarProperty Name="choiceD" ColumnName="choiceD" />
+          <ScalarProperty Name="choiceC" ColumnName="choiceC" />
+          <ScalarProperty Name="choiceB" ColumnName="choiceB" />
+          <ScalarProperty Name="choiceA" ColumnName="choiceA" />
+          <ScalarProperty Name="questionTitle" ColumnName="questionTitle" />
+          <ScalarProperty Name="questionId" ColumnName="questionId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="universityRankings">
+      <EntityTypeMapping TypeName="nMDCATPrepTestModel.universityRanking">
+        <MappingFragment StoreEntitySet="universityRanking">
+          <ScalarProperty Name="universityName" ColumnName="universityName" />
+          <ScalarProperty Name="universityRankingId" ColumnName="universityRankingId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="nMDCATPrepTestModel.User">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="ucontrol" ColumnName="ucontrol" />
+          <ScalarProperty Name="userPassword" ColumnName="userPassword" />
+          <ScalarProperty Name="userName" ColumnName="userName" />
+          <ScalarProperty Name="userId" ColumnName="userId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="userPowers">
+      <EntityTypeMapping TypeName="nMDCATPrepTestModel.userPower">
+        <MappingFragment StoreEntitySet="userPower">
+          <ScalarProperty Name="isPowerful" ColumnName="isPowerful" />
+          <ScalarProperty Name="userId" ColumnName="userId" />
+          <ScalarProperty Name="userPowerId" ColumnName="userPowerId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserRolePrivileges">
+      <EntityTypeMapping TypeName="nMDCATPrepTestModel.UserRolePrivilege">
+        <MappingFragment StoreEntitySet="UserRolePrivilege">
+          <ScalarProperty Name="dateModified" ColumnName="dateModified" />
+          <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
+          <ScalarProperty Name="dateCreate" ColumnName="dateCreate" />
+          <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+          <ScalarProperty Name="userId" ColumnName="userId" />
+          <ScalarProperty Name="privilegeId" ColumnName="privilegeId" />
+          <ScalarProperty Name="roleId" ColumnName="roleId" />
+          <ScalarProperty Name="upvId" ColumnName="upvId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

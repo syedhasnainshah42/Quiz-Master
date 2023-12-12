@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="3362b6436af74e728a7d2a270d1bc4f8" Name="Diagram1" ZoomLevel="82">
+        <EntityTypeShape EntityType="nMDCATPrepTestModel.classDomain" Width="1.5" PointX="8.75" PointY="3" />
+        <EntityTypeShape EntityType="nMDCATPrepTestModel.departmentRanking" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="nMDCATPrepTestModel.Employee" Width="1.5" PointX="6" PointY="6.625" />
+        <EntityTypeShape EntityType="nMDCATPrepTestModel.Privilege" Width="1.5" PointX="3" PointY="13.5" />
+        <EntityTypeShape EntityType="nMDCATPrepTestModel.questionTypeDomain" Width="1.5" PointX="8.75" PointY="6.25" />
+        <EntityTypeShape EntityType="nMDCATPrepTestModel.Role" Width="1.5" PointX="3" PointY="9.875" />
+        <EntityTypeShape EntityType="nMDCATPrepTestModel.student" Width="1.5" PointX="14" PointY="7.875" />
+        <EntityTypeShape EntityType="nMDCATPrepTestModel.studentAppearTest" Width="1.5" PointX="16.25" PointY="4.75" />
+        <EntityTypeShape EntityType="nMDCATPrepTestModel.studentRegisterForTest" Width="1.5" PointX="16.25" PointY="8.125" />
+        <EntityTypeShape EntityType="nMDCATPrepTestModel.subject" Width="1.5" PointX="3.75" PointY="7.125" />
+        <EntityTypeShape EntityType="nMDCATPrepTestModel.sysdiagram" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="nMDCATPrepTestModel.tblAppLlicense" Width="1.5" PointX="5.75" PointY="0.75" />
+        <EntityTypeShape EntityType="nMDCATPrepTestModel.test" Width="1.5" PointX="14" PointY="1.375" />
+        <EntityTypeShape EntityType="nMDCATPrepTestModel.testQuestion" Width="1.5" PointX="13.25" PointY="4.875" />
+        <EntityTypeShape EntityType="nMDCATPrepTestModel.testQuestionDatabank" Width="1.5" PointX="11" PointY="3.625" />
+        <EntityTypeShape EntityType="nMDCATPrepTestModel.universityRanking" Width="1.5" PointX="7.75" PointY="0.75" />
+        <EntityTypeShape EntityType="nMDCATPrepTestModel.User" Width="1.5" PointX="0.75" PointY="6.5" />
+        <EntityTypeShape EntityType="nMDCATPrepTestModel.userPower" Width="1.5" PointX="3" PointY="3.625" />
+        <EntityTypeShape EntityType="nMDCATPrepTestModel.UserRolePrivilege" Width="1.5" PointX="5.25" PointY="10.75" />
+        <AssociationConnector Association="nMDCATPrepTestModel.FK_testQuestionDatabank_classDomain" />
+        <AssociationConnector Association="nMDCATPrepTestModel.FK_testQuestionDatabank_classDomain1" />
+        <AssociationConnector Association="nMDCATPrepTestModel.FK_Employee_subject" />
+        <AssociationConnector Association="nMDCATPrepTestModel.FK_Employee_User" />
+        <AssociationConnector Association="nMDCATPrepTestModel.FK__tblPrivil__creat__5A054B78" />
+        <AssociationConnector Association="nMDCATPrepTestModel.FK__tblPrivil__modif__5AF96FB1" />
+        <AssociationConnector Association="nMDCATPrepTestModel.FK_tblRolePrivilege_tblPrivilege" />
+        <AssociationConnector Association="nMDCATPrepTestModel.FK_testQuestionDatabank_questionTypeDomain" />
+        <AssociationConnector Association="nMDCATPrepTestModel.FK__tblRole__created__5DD5DC5C" />
+        <AssociationConnector Association="nMDCATPrepTestModel.FK__tblRole__modifie__5ECA0095" />
+        <AssociationConnector Association="nMDCATPrepTestModel.FK_tblRolePrivilege_tblRole" />
+        <AssociationConnector Association="nMDCATPrepTestModel.FK_studentAppearTest_student" />
+        <AssociationConnector Association="nMDCATPrepTestModel.FK_studentRegisterForTest_student" />
+        <AssociationConnector Association="nMDCATPrepTestModel.FK_studentAppearTest_test" />
+        <AssociationConnector Association="nMDCATPrepTestModel.FK_studentAppearTest_testQuestionDatabank" />
+        <AssociationConnector Association="nMDCATPrepTestModel.FK_studentRegisterForTest_test" />
+        <AssociationConnector Association="nMDCATPrepTestModel.FK_testQuestionDatabank_subject" />
+        <AssociationConnector Association="nMDCATPrepTestModel.FK_testQuestion_test" />
+        <AssociationConnector Association="nMDCATPrepTestModel.FK_testQuestion_testQuestionDatabank" />
+        <AssociationConnector Association="nMDCATPrepTestModel.FK__tblRolePr__creat__5FBE24CE" />
+        <AssociationConnector Association="nMDCATPrepTestModel.FK__tblRolePr__modif__60B24907" />
+        <AssociationConnector Association="nMDCATPrepTestModel.FK_userPower_User" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

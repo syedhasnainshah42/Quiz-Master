@@ -1,0 +1,93 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+@{
+    Layout = null;
+}
+<div class="main-wrapper">
+    <div class="account-page">
+        <div class="container">
+            <h3 class="account-title text-white"> Student Login </h3>
+            
+            <div class="account-box">
+                <div class="account-wrapper">
+                    <div class="account-logo">
+                        <a href="Index.cshtml" class="logo">
+                            <img src="~/assets/img/logo.png" width="40" height="60" alt="">
+                        </a>
+                    </div>
+
+                    <form action="~/studentLogin/Login" method="post">
+
+
+
+                        <label name="info"> @ViewBag.error </label>
+                        <div class="form-group custom-mt-form-group">
+
+
+                            <input type="text" class="form-control" name="userName" id="userName" />
+
+                            <label class="control-label">Username</label><i class="bar"></i>
+                        </div>
+                        <div class="form-group custom-mt-form-group">
+                            <label>Password</label>
+                            <input type="password" class="form-control" name="password" id="password" />
+                        </div>
+                        <div class="form-group text-center custom-mt-form-group">
+                            <button type="submit" name="submit" class="btn btn-primary btn-block account-btn" value="Login">Login</button>
+                            <a href="~/stafflogin/Index" style="color:blue"><u>Staff Login </u></a>
+                        </div>
+                        
+                        @*  }*@
+                    </form>
+
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+    <link rel="shortcut icon" type="image/x-icon" href="~/assets/img/favicon.png">
+    <title>NMDCAT</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="~/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="~/assets/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="~/assets/css/select2.min.css">
+    <link rel="stylesheet" type="text/css" href="~/assets/css/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" type="text/css" href="~/assets/css/style.css">
+    <link href="../../dist/css/style.min.css" rel="stylesheet">
+
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <!--[if lt IE 9]>
+        <script src="assets/js/html5shiv.min.js"></script>
+        <script src="assets/js/respond.min.js"></script>
+    <![endif]-->
+    <style>
+        .page-wrapper {
+            display: block !important;
+        }
+    </style>
+</head>
+@*<body>
+    <div class="sidebar-overlay" data-reff=""></div>
+
+
+    <script type="text/javascript" src="~/assets/js/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="~/assets/js/popper.min.js"></script>
+    <script type="text/javascript" src="~/assets/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/assets/js/jquery.slimscroll.js"></script>
+    <script type="text/javascript" src="~/assets/js/select2.min.js"></script>
+    <script type="text/javascript" src="~/assets/js/moment.min.js"></script>
+    <script type="text/javascript" src="~/assets/js/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript" src="~/assets/js/app.js"></script>
+
+
+</body>*@
+
+

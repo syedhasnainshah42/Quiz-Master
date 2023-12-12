@@ -1,0 +1,210 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+<form id="questionForm" method="post" action="@Url.Action("Index", "assignQuestionToTest")">
+    
+    <div class="page-content">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="page-content">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+
+                            <!-- content -->
+                            <div class="content container-fluid">
+                                <div class="page-header">
+                                    <div class="row">
+                                        <div class="col-lg-7 col-md-12 col-sm-12 col-12">
+                                            <h5 class="text-uppercase">Assign Question To Current  Test</h5>
+                                        </div>
+                                        @*<div class="col-lg-5 col-md-12 col-sm-12 col-12">
+                                                <ul class="list-inline breadcrumb float-right">
+                                                    <li class="list-inline-item"><a href="#">Home</a></li>
+                                                    <li class="list-inline-item"><a href="#">Exam</a></li>
+                                                    <li class="list-inline-item"> Exam list</li>
+                                                </ul>
+                                            </div>*@
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-4 col-3">
+
+                                    </div>
+                                    @*<div class="col-sm-8 col-9 text-right m-b-20">
+                                            <a href="add-exam.html" class="btn btn-primary float-right btn-rounded"><i class="fa fa-plus"></i> Add Exam</a>
+                                        </div>*@
+                                </div>
+                                <div class="content-page">
+                                    <div class="row filter-row">
+                                        <div class="col-sm-6 col-md-3">
+                                            <div class="form-group custom-mt-form-group">
+                                                @Html.DropDownList("ttest")
+                                                <label class="control-label">Add To Test</label><i class="bar"></i>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 col-md-3">
+                                            <div class="form-group custom-mt-form-group">
+                                                @Html.DropDownList("questionClass")
+                                                <label class="control-label">Class</label><i class="bar"></i>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 col-md-3">
+                                            <div class="form-group custom-mt-form-group">
+                                                @Html.DropDownList("sSubject")
+
+                                                <label class="control-label">Subject</label><i class="bar"></i>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 col-md-3">
+                                            <div class="form-group custom-mt-form-group">
+                                                <input type="text" name="chapter" id="chapter" />
+                                                <label class="control-label">Chapter</label><i class="bar"></i>
+                                            </div>
+                                        </div>
+                                        @*<input type="hidden" id="selectedQuestionsInput" name="selectedQuestions" value="" />*@
+                                        <div class="col-md-3">
+                                            <button type="button" class="btn btn-success btn-block mt-4 mb-2" onclick="loadQuestion()"> Load </button>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <button type="submit" class="btn btn-success btn-block mt-4 mb-2"> Add </button>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-12">
+                                        <table class="table table-bordered table-condensed">
+                                            <thead>
+                                                <tr>
+                                                    <th>QNo</th>
+                                                    <th>Question</th>
+                                                    <th>Option A</th>
+                                                    <th>Option B</th>
+                                                    <th>Option C</th>
+                                                    <th>Option D</th>
+                                                    <th>Marks </th>
+
+                                                    <th><input type="checkbox" id="checkquestion" /> Select All</th>
+
+                                                </tr>
+                                            </thead>
+                                            <tbody id="datalist">
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </form>
+    @section Scripts{
+
+        <script>
+        $(document).ready(function () {
+            loadQuestion();
+        });
+
+    function loadQuestion() {
+
+        var ttest = $("#ttest").val();
+        var questionClass = $("#questionClass").val();
+        var chapter = $("#chapter").val();
+        var sSubject = $("#sSubject").val();
+        $.ajax({
+            url: "@Url.Action("loadQuestion", "assignQuestionToTest")",
+            data: { qClass: questionClass, chapter: chapter, sSubject: sSubject, testId: ttest },
+            type: "POST",
+
+            success: function (data) {
+                var dd = "";
+                if (data.length > 0) {
+                    for (var i = 0; i < data.length; i++) {
+                        var qid = data[i].Questionid;
+                        var questionIsDuplicate = data[i].dup;
+
+
+                         {
+                            dd += '<tr><td>' + data[i].Questionid + '</td>'
+                            dd += '<td>' + data[i].QuestionTitle + '</td>'
+                            dd += '<td>' + data[i].choiceA + '</td>'
+                            dd += '<td>' + data[i].choiceB + '</td>'
+                            dd += '<td>' + data[i].choiceC + '</td>'
+                            dd += '<td>' + data[i].choiceD + '</td>'
+
+                            dd += '<td><input type="text" id="qmarks' + data[i].Questionid +'" name="qmarks" value="' + 2 + '"></td>'
+                            if (questionIsDuplicate > 0) {
+                                dd += '<td><input type="checkbox" id="qid" name="qid" disabled value="' + qid + '"></td></tr>'
+                            } else {
+                                dd += '<td><input type="checkbox" id="qid" name="qid" value="' + qid + '"></td></tr>'
+
+                            }
+                        }
+                    }
+                    $("#datalist").html(dd);
+                }
+            }
+        });
+
+        
+            }
+            // Add an event listener to the form to capture the submitted data
+            $("#questionForm").on("submit", function (event) {
+                event.preventDefault(); // Prevent the default form submission
+
+
+                // Create an array to store the selected questions and their corresponding marks
+                var selectedQuestions = [];
+
+                // Loop through each checkbox to check if it's selected
+                $("input[type='checkbox']:checked").each(function () {
+                    // Get the corresponding Question ID and Marks value for the selected question
+                    var questionId = $(this).val();
+                    var marks = $("#qmarks" + questionId).val();
+                   
+                    // Push the question ID and marks into the selectedQuestions array as an object
+                    selectedQuestions.push({ QuestionId: questionId, Marks: marks });
+                });
+
+
+                // Add the selectedQuestions array as a hidden input field in the form
+                var selectedQuestionsInput = $("<input>")
+                    .attr("type", "hidden")
+                    .attr("name", "selectedQuestions")
+                    .val(JSON.stringify(selectedQuestions));
+
+                // Append the hidden input field to the form
+                $(this).append(selectedQuestionsInput);
+                console.log(selectedQuestions);
+                // Submit the form
+                this.submit();
+            });
+        </script>
+
+        <script>
+
+            $('#checkquestion').click(function (event) {
+                if (this.checked) {
+                    // Iterate each checkbox
+                    $(':checkbox').each(function () {
+                        if (!this.disabled) {
+                            this.checked = true;
+                        }
+                    });
+                } else {
+                    $(':checkbox').each(function () {
+                        this.checked = false;
+                    });
+                }
+            });
+
+
+        </script>
+
+
+
+    }

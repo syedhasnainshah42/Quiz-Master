@@ -1,0 +1,331 @@
+﻿@model NMDCATEtestPreparatory.testQuestionDatabank
+
+@{
+    ViewBag.Title = "Index";
+}
+<div class="page-content">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="page-content">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+
+                        <form action="~/testQuestionDatabanks/Index" method="post" id="getdata">
+                            <!-- content -->
+                            <div class="content container-fluid">
+                                <div class="page-header">
+                                    <div class="row">
+                                        <div class="col-lg-7 col-md-12 col-sm-12 col-12">
+                                            <h5 class="text-uppercase">Adding MCQS To DataBank</h5>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="content-page">
+                                <div class="row filter-row">
+                                    <div class="col-sm-6 col-md-3">
+                                        <div class="form-group custom-mt-form-group">
+                                            @Html.DropDownList("questionClass")
+                                            <label class="control-label">Class</label><i class="bar"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 col-md-3">
+                                        <div class="form-group custom-mt-form-group">
+                                            @Html.DropDownList("questionType")
+
+                                            <label class="control-label">Question Type</label><i class="bar"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 col-md-3">
+                                        <div class="form-group custom-mt-form-group">
+                                            @Html.DropDownList("sSubject")
+
+                                            <label class="control-label">Subject</label><i class="bar"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 col-md-3">
+                                        <div class="form-group custom-mt-form-group">
+                                            <input type="text" name="chapter" id="chapter" />
+                                            <label class="control-label">Chapter</label><i class="bar"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <p class="control-label">Text Editor</p>
+
+                                        <textarea class="tinymce" id="mymce" name="questionTitleEditor"></textarea>
+                                        @*   <input type="submit" value="Get Data">*@
+
+                                    </div>
+
+                                    </div>
+
+                                <div class="row ">
+                                    <div class=" col-sm-2">
+                                        <p>
+                                            Add text to:
+
+                                        </p>
+                                    </div>
+                                    <div class=" col-sm-1">
+                                        <p>
+                                            <input type="radio" name="radio1" id="radio1" />
+                                            Question
+                                        </p>
+                                    </div>
+                                    <div class=" col-sm-1">
+                                        <p>
+                                            <input type="radio" name="radio1" id="radio2" />
+                                            A
+                                        </p>
+                                    </div>
+                                    <div class=" col-sm-1">
+                                        <p>
+                                            <input type="radio" name="radio1" id="radio3" />
+                                            B
+                                        </p>
+                                    </div>
+                                    <div class=" col-sm-1">
+                                        <p>
+                                            <input type="radio" name="radio1" id="radio4" />
+                                            C
+                                        </p>
+                                    </div>
+                                    <div class=" col-sm-1">
+                                        <p>
+                                            <input type="radio" name="radio1" id="radio5" />
+                                            D
+                                        </p>
+                                    </div>
+                                    <div class=" col-sm-1">
+                                        <p>
+                                            <input type="radio" name="radio1" id="radio6" />
+                                            Desc
+                                        </p>
+                                    </div>
+                                    <div id="data-container">
+
+                                    </div>
+                                    <div class=" col-sm-2">
+                                        <button class="btn btn-success btn-block mt-4 mb-2" type="button" value="save" id="s_submit" onclick="texttoQ_choices()">Add</button>
+                                    </div>
+
+
+                                    <div id="data-container">
+
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <p class="control-label">Question</p>
+                                        <textarea rows="7"
+                                                  cols="89"
+                                                  name="questionTitle"
+                                                  id="questionTitle">
+                                        </textarea>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-9">
+                                            <p>A</p>
+                                            <input type="text" name="choiceA" id="choiceA" />
+                                        </div>
+
+                                        <div class="col-sm-3">
+                                            <input type="radio" name="correctChoice" value="A" id="correctChoice" />
+
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <p>B</p>
+                                            <input type="text" name="choiceB" id="choiceB" />
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <input type="radio" name="correctChoice" value="B" id="correctChoice" />
+
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <p>C</p>
+                                            <input type="text" name="choiceC" id="choiceC" />
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <input type="radio" name="correctChoice" value="C" id="correctChoice" />
+
+
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <p>D</p>
+                                            <input type="text" name="choiceD" id="choiceD" />
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <input type="radio" name="correctChoice" value="D" id="correctChoice" />
+
+
+                                        </div>
+
+
+
+
+                                        <div class="col-sm-6 col-md-3">
+                                            <div class="form-group custom-mt-form-group">
+                                                @Html.DropDownList("ttest")
+                                                <label class="control-label">Add To Test</label><i class="bar"></i>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12">
+                                            
+                                            <p class="control-label">Description</p>
+                                            <textarea rows="7"
+                                                      cols="89"
+                                                      name="description"
+                                                      id="mymce2">
+        </textarea>
+                                        </div>
+                                        <div id="data-container">
+
+                                        </div>
+                                       
+
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                                            <div class="form-group text-center custom-mt-form-group">
+                                                <button class="btn btn-success btn-block mt-4 mb-2" type="submit" value="save">Save</button>
+                                                <button class="btn btn-success btn-block mt-4 mb-2" type="reset" value="reset">Cancel</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                </div>
+                        </form>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ============================================================== -->
+<!-- All Jquery -->
+<!-- ============================================================== -->
+<script src="../../assets/libs/jquery/dist/jquery.min.js"></script>
+ @*Bootstrap tether Core JavaScript*@ 
+<script src="../../assets/libs/popper.js/dist/umd/popper.min.js"></script>
+    <script src="../../assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
+
+<!-- apps -->
+<script src="../../dist/js/app.min.js"></script>
+<script src="../../dist/js/app.init.light-sidebar.js"></script>
+<script src="../../dist/js/app-style-switcher.js"></script>
+<!-- slimscrollbar scrollbar JavaScript -->
+<script src="../../assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
+<script src="../../assets/extra-libs/sparkline/sparkline.js"></script>
+<!--Wave Effects -->
+<script src="../../dist/js/waves.js"></script>
+<!--Menu sidebar -->
+<script src="../../dist/js/sidebarmenu.js"></script>
+<!--Custom JavaScript -->
+<script src="../../dist/js/custom.min.js"></script>
+<!-- This Page JS -->
+<script src="../../assets/libs/tinymce/tinymce.min.js"></script>
+<script src="../../assets/libs/tinymce/themes/modern/theme.min.js"></script>
+<script>
+    $(document).ready(function () {
+
+        if ($("#mymce").length > 0) {
+            tinymce.init({
+                selector: "textarea#mymce",
+                theme: "modern",
+                height: 300,
+                plugins: [
+                    "advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker",
+                    "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking",
+                    "save table contextmenu directionality emoticons template paste textcolor"
+                ],
+                toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | l      ink image | print preview media fullpage | forecolor backcolor emoticons",
+
+            });
+        }
+    });
+</script>
+
+   
+
+<script>
+    $(document).ready(function () {
+        $("#getdata").submit(function (e) {
+            var content = tinymce.get("mymce").getContent();
+            $("#mymce").val(content);
+            $("#data-container").html(content)
+        });
+        return false;
+
+    });
+
+    function texttoQ_choices() {
+        {
+            var choice1 = document.getElementById("radio2");
+            var choice2 = document.getElementById("radio3");
+            var choice3 = document.getElementById("radio4");
+            var choice4 = document.getElementById("radio5");
+            var choice5 = document.getElementById("radio1");
+            var choice6 = document.getElementById("radio6");
+            
+            var content = tinymce.get("mymce").getContent();
+            var content2 = tinymce.get("mymce").getContent({ format: 'text' });
+            if (choice1.checked == true) {
+                $("#choiceA").val(content2);
+            }
+
+            else if (choice2.checked == true) {
+                $("#choiceB").val(content2);
+
+            }
+            else if (choice3.checked == true) {
+                $("#choiceC").val(content2);
+
+            }
+            else if (choice4.checked == true) {
+                $("#choiceD").val(content2);
+            }
+            else if (choice5.checked == true) {
+                  $("#questionTitle").val(content2);
+            }
+            else if (choice6.checked == true) {
+                alert("description");
+                $("#mymce2").val(content2);
+            }
+          //  $("#data-container").html(content)
+        }
+      
+    }
+
+    
+       
+
+
+
+        
+    
+</script>
+
+<script>
+    function openCity(evt, cityName) {
+        // Declare all variables
+        var i, tabcontent, tablinks;
+
+        // Get all elements with class="tabcontent" and hide them
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+
+        // Get all elements with class="tablinks" and remove the class "active"
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+
+        // Show the current tab, and add an "active" class to the button that opened the tab
+        document.getElementById(cityName).style.display = "block";
+        evt.currentTarget.className += " active";
+    }
+</script>

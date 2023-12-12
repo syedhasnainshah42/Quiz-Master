@@ -1,0 +1,90 @@
+﻿
+
+@{
+    ViewBag.Title = "extractKey";
+}
+
+<div class="main-wrapper">
+    <div class="account-page">
+        <div class="container">
+            <div class="account-box">
+                <div class="account-wrapper">
+                    <form action="extractKey" method="post">
+                        <div class="form-group custom-mt-form-group">
+                            @if (Model.currentDate != null)
+                            {
+                                <input class="datetimepicker" type="datetime" name="currentDate" value="@Convert.ToDateTime(Model.currentDate).ToString("dd/MM/yyyy")">
+                            }
+                            else
+
+                            {
+                                <input class="datetimepicker" type="datetime" name="currentDate">
+
+                            }
+                            <label class="control-label"> Date initiated</label><i class="bar"></i>
+
+                        </div>
+                        <div class="form-group custom-mt-form-group">
+                            @if (Model.uptoDate != null)
+
+                            {
+                                <input class="datetimepicker" type="datetime" name="uptoDate" value="@Convert.ToDateTime(Model.uptoDate).ToString("dd/MM/yyyy")">
+                            }
+                            else
+
+                            {
+                                <input class="datetimepicker" type="datetime" name="uptoDate">
+                            }
+                            <label class="control-label">Upto date</label><i class="bar"></i>
+                        </div>
+                        <div class="form-group custom-mt-form-group">
+                            <input type="time" name="currentTime" value="@Model.currentTime">
+                            <label class="control-label">Current time</label><i class="bar"></i>
+                        </div>
+                        <div class="form-group custom-mt-form-group">
+                            @if (Model.currentDate != null)
+
+                            {
+                                <input class="datetimepicker" name="CurrentDate" type="datetime" value="@Convert.ToDateTime(Model.currentDate).ToString("dd/MM/yyyy")">
+                            }
+                            else
+                            {
+                                <input class="datetimepicker" name="CurrentDate" type="datetime">
+
+                            }
+                            <label class="control-label">Current date</label><i class="bar"></i>
+                        </div>
+                        <div class="form-group custom-mt-form-group">
+                            @if (Model.expiryDate != null)
+
+                            {
+                                <input class="datetimepicker" type="datetime" name="expiryDate" value="@Convert.ToDateTime(Model.expiryDate).ToString("dd/MM/yyyy")">
+                            }
+                            else
+
+                            {
+                                <input class="datetimepicker" type="datetime" name="expiryDate">
+                            }
+                            <label class="control-label">Expiry date</label><i class="bar"></i>
+                        </div>
+                        <div class="form-group custom-mt-form-group">
+                            <input type="number" name="gracePeriod" value="@Model.gracePeriod">
+                            <label class="control-label">Grace period</label><i class="bar"></i>
+                        </div>
+                        <div class="form-group custom-mt-form-group">
+                            <input type="text" value="@ViewBag.encryptedKey">
+                            <label class="control-label">License Key</label><i class="bar"></i>
+                        </div>
+                        <div class="form-group text-center custom-mt-form-group">
+                            <button type="submit" class="btn btn-success btn-lg mb-1">Generate Key</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+

@@ -1,0 +1,130 @@
+﻿
+@model NMDCATEtestPreparatory.student
+
+@{
+    ViewBag.Title = "studentEdit1";
+}
+
+<div class="page-header">
+    <div class="row">
+        <div class="col-lg-7 col-md-12 col-sm-12 col-12">
+            <h5 class="text-uppercase">Student Regestration Form</h5>
+        </div>
+        <div class="col-lg-5 col-md-12 col-sm-12 col-12">
+            <ul class="list-inline breadcrumb float-right">
+                <li class="list-inline-item"><a href="index.html">Home</a></li>
+                <li class="list-inline-item"><a href="index.html">Student</a></li>
+                <li class="list-inline-item"> add student</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="page-content">
+
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="card">
+                <div class="page-title">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                            <div class="page-title">Basic information</div>
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="card-body">
+                    <form action="~/student/studentEdit1" method="post" enctype="multipart/form-data">
+
+
+
+                        <div class=" row">
+
+                            <input type="hidden" name="studentId" id="studentId" />
+
+                        </div>
+                        @*<div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="form-group custom-mt-form-group">
+                                <input type="text" name="searchbycontact" id="searchbycontact" onblur="funsuggestion()" />
+                                <label class="control-label">Search By Contact</label><i class="bar"></i>
+                            </div>
+                        </div>*@
+                        <div class="form-group custom-mt-form-group">
+                            <input type="file" name="img" id="studentPicture" accept="image/*" />
+                            <label class="control-label">Student Picture</label><i class="bar"></i>
+                        </div>
+
+                        <div class="row">
+
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+
+                                <div class="form-group custom-mt-form-group">
+                                    <input type="text" name="studentName" id="studentName" value="@Model.studentName"/>
+                                    <label class="control-label">Student Name</label><i class="bar"></i>
+                                </div>
+                                <div class="form-group custom-mt-form-group">
+                                    <input type="text" name="studentFName" id="studentFName" value="@Model.studentFName"/>
+                                    <label class="control-label">Father Name</label><i class="bar"></i>
+                                </div>
+                                <div class="form-group custom-mt-form-group">
+                                    <input class="datetimepicker" type="text" name="DOB" id="DOB"value="@Model.DOB">
+                                    <label class="control-label">Birth Date</label><i class="bar"></i>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                                <div class="form-group custom-mt-form-group">
+                                    <input type="text" name="email" id="email" value="@Model.email"/>
+                                    <label class="control-label">Email</label><i class="bar"></i>
+                                </div>
+                                <div class="form-group custom-mt-form-group">
+                                    <input type="text" name="Contact" id="Contact"value="@Model.contact" />
+                                    <label class="control-label">Contact</label><i class="bar"></i>
+                                </div>
+                                <div class="form-group custom-mt-form-group">
+                                    <select name="gender" id="gender"value="@Model.gender">
+                                        <option>Male</option>
+                                        <option>Female</option>
+                                        <option>Other</option>
+                                    </select>
+                                    <label class="control-label">Gender</label><i class="bar"></i>
+                                </div>
+                                <div class="form-group custom-mt-form-group">
+                                    @*<input type="text" id="testStatus" name="testStatus" oninput="validateBinaryInput(this)" maxlength="1" />*@
+                                    <select id="testStatusSelect " name="testStatus" onchange="updateTestStatus()">
+                                        <option value="true">True</option>
+                                        <option value="false">False</option>
+                                    </select>
+                                    <label class="control-label">Test Status</label><i class="bar"></i>
+                                </div>
+
+                                <div class="form-group custom-mt-form-group">
+                                    <input type="hidden" name="userName" id="userName" />
+                                    @* <label class="control-label">User Name</label><i class="bar"></i>*@
+                                </div>
+
+                                <div class="form-group custom-mt-form-group">
+                                    <input type="hidden" name="password" id="password" />
+                                    @*  <label class="control-label">Password </label><i class="bar"></i>*@
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6 col-md-3">
+                            @*<div class="form-group custom-mt-form-group">
+                                @Html.DropDownList("ttest")
+                                <label class="control-label">Add To Test</label><i class="bar"></i>
+                            </div>*@
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                                <div class="form-group custom-mt-form-group">
+                                    <button type="submit" class="btn btn-success btn-block mt-4 mb-2" value="Save" id="save"> Save </button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

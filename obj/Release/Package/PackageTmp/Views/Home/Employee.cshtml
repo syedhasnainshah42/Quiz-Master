@@ -1,0 +1,99 @@
+﻿
+
+<div class="page-header">
+    <div class="row">
+        <div class="col-lg-7 col-md-12 col-sm-12 col-12">
+            <h5 class="text-uppercase">Add Teacher</h5>
+        </div>
+        @*<div class="col-lg-5 col-md-12 col-sm-12 col-12">
+            <ul class="list-inline breadcrumb float-right">
+                <li class="list-inline-item"><a href="index.html">Home</a></li>
+                <li class="list-inline-item"><a href="index.html">Teacher</a></li>
+                <li class="list-inline-item"> Add Teacher</li>
+            </ul>
+        </div>*@
+    </div>
+</div>
+<div class="page-content">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="card">
+                <div class="page-title">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                            <div class="page-title">basic information</div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="card-body">
+                    <form action="~/Home/EmployeeForm" method="post">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+
+                                <div class="form-group custom-mt-form-group">
+                                    <input type="text" name="employeeName" id="employeeName" />
+                                    <label class="control-label">Employee Name</label><i class="bar"></i>
+                                </div>
+                                <div class="form-group custom-mt-form-group">
+                                    <input type="text" name="employeeFName" id="employeeFName" />
+                                    <label class="control-label">Father Name</label><i class="bar"></i>
+                                </div>
+                                <div class="form-group custom-mt-form-group">
+                                    <input type="text" name="userName" id="userName" />
+                                    <label class="control-label">User Name</label><i class="bar"></i>
+                                </div>
+                                <div class="form-group custom-mt-form-group">
+                                    <input type="text" name="userPassword" id="userPassword" />
+                                    <label class="control-label">Password</label><i class="bar"></i>
+                                </div>
+                                <div class="form-group custom-mt-form-group">
+                                    <input class="datetimepicker" type="datetime" name="DOB" id="DOB">
+                                    <label class="control-label">Birth Date</label><i class="bar"></i>
+                                </div>
+                                <div class="form-group custom-mt-form-group">
+                                    <input type="text" name="Contact" id="Contact" />
+                                    <label class="control-label">Contact</label><i class="bar"></i>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                                
+                                <div class="form-group custom-mt-form-group">
+
+                                    <label class="control-label">Select User</label><i class="bar"></i>
+                                    @*<input type="" name="ucontrol" id="ucontrol" />*@
+                                    @Html.DropDownList("Users", null, new { @class = "form-control", required = true })
+
+                                </div>
+                                <div class="form-group custom-mt-form-group">
+                                    @*<input type="number" name="subjectId" id="subjectId" />*@
+                                    <label class="control-label">Select Subject</label><i class="bar"></i>
+                                    @Html.DropDownList("Subjects",  null, new { @class = "form-control", required = true })
+
+                                </div>
+                                <div class="form-group custom-mt-form-group">
+                                    <input type="email" name="Email" id="Email" />
+                                    <label class="control-label">Enter Email</label><i class="bar"></i>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                                <div class="form-group custom-mt-form-group">
+                                    <button class="btn btn-primary mr-2" type="submit" value="Save">Register</button>
+
+
+                                    <button class="btn btn-secondary" type="reset" value="Cancel">Cancel</button>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

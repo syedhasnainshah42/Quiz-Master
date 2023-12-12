@@ -1,0 +1,110 @@
+﻿@{
+    ViewBag.Title = "ResutS";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+<div class="page-wrapper">
+    <!-- content -->
+    <div class="content container-fluid">
+        <div class="page-header">
+            <div class="row">
+                <div class="col-lg-7 col-md-12 col-sm-12 col-12">
+                    <h5 class="text-uppercase">Result</h5>
+                </div>
+                <div class="col-lg-5 col-md-12 col-sm-12 col-12 text-right">
+                    
+                    @*<input type="button" value="Generate PDF" onclick="location.href='@Url.Action("GeneratePdf", "studTest")'" />*@
+          
+                    <a href="~/studTest/GeneratePdf?obtMarks=@ViewBag.obtMarks&numberOfAttempQuestion=@ViewBag.numberOfAttempQuestion&totlMarks=@ViewBag.totlMarks" class="btn btn-primary">Generate PDF</a>
+                </div>
+            </div>
+        </div>
+        <div class="card-box m-b-0">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="profile-view">
+                        <div class="profile-basic">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <div class="profile-info-left">
+
+                                    </div>
+                                </div>
+                                <div class="col-md-5">
+                                    <div class="profile-info-left">
+                                        @if (!string.IsNullOrEmpty(Model.studentPicture))
+                                        {
+                                            <img src="@Url.Content("~/MyImages/" + Model.studentPicture)" alt="Student Picture" class="img-fluid rounded-circle" />
+                                        }
+                                        else
+                                        {
+                                            <!-- Display a default image if no picture is uploaded -->
+                                            <img src="@Url.Content("~/MyImages/default-profile-picture.jpg")" alt="Default Picture" class="img-fluid rounded-circle" />
+                                        }
+                                    </div>
+                                </div>
+                                @{ var gender = ""; }
+                                @if (Model.gender == "1")
+                                {
+                                    gender = "Male";
+                                }
+                                else
+                                {
+                                    gender = "Female";
+                                    
+                                }
+                                <div class="col-md-8">
+                                    <ul class="personal-info">
+
+                                        <li>
+                                        <li>
+                                            <span class="title">Student ID:</span>
+                                            <span class="text">@Model.studentId</span>
+                                        </li>
+
+                                        <li>
+                                            <span class="title">Student Name:</span>
+                                            <span class="text">@Model.studentName</span>
+                                        </li>
+                                        <li>
+                                            <span class="title">Father's Name:</span>
+                                            <span class="text">@Model.studentFName</span>
+                                        </li>
+                                        <li>
+                                            <span class="title">Date Of Birth:</span>
+                                            <span class="text">@Model.DOB</span>
+                                        </li>
+                                        <li>
+                                            <span class="title">Gender:</span>
+                                            <span class="text">@gender</span>
+                                        </li>
+                                        <li>
+                                            <span class="title">Email:</span>
+                                            <span class="text">@Model.email</span>
+                                        </li>
+                                        <li>
+                                            <span class="title">Contact No:</span>
+                                            <span class="text">@Model.contact</span>
+                                        </li>
+                                        <li>
+                                            <span class="title"> Questions Attempted:</span>
+                                            <span class="text">@ViewBag.numberOfAttempQuestion</span>
+                                        </li>
+                                        <li>
+                                            <span class="title">Obtained Marks:</span>
+                                            <span class="text">@ViewBag.obtMarks </span>
+                                        </li>
+                                        <li>
+                                            <span class="title">Total Marks:</span>
+                                            <span class="text">@ViewBag.totlMarks </span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+   
+</div>

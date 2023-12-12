@@ -1,0 +1,510 @@
+﻿@{
+            ViewBag.Title = "testQuestion";
+         
+    }
+        
+
+
+
+
+    <div class="page-content">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="card">
+                    <div class="page-title">
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                                <span id="lblCount">00</span>
+                                <div class="page-title"> Exam Conduction</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <select id="ddquestions" onchange="dropDown();"></select>
+
+                                <form action="~/studTest/testQuestionDatabank" method="post">
+                                    <div class="form-group custom-mt-form-group">
+
+                                        <strong>Question Title</strong>
+
+                                    </div>
+                                    <div class="form-group custom-mt-form-group">
+                                        <strong id="txtquestiontitle"></strong>
+                                        <br />
+                                        <i class="bar"></i>
+                                    </div>
+                                    <div class="form-group row ">
+                                        <label class="col-form-label col-md-2">Choose the Correct Option</label>
+                                        <div class="col-md-10">
+                                            <div class="radio">
+                                                <input type="radio" id="radioquestion1" name="radioChoice" value="A">
+
+                                                <label id="labelquestion1">
+                                                    A
+                                                </label>
+                                            </div>
+                                            <div class="radio">
+
+                                                <input type="radio" id="radioquestion2" name="radioChoice" value="B">
+                                                <label id="labelquestion2">
+                                                    B
+                                                </label>
+                                            </div>
+                                            <div class="radio">
+
+                                                <input type="radio" id="radioquestion3" name="radioChoice" value="C">
+                                                <label id="labelquestion3">
+                                                    C
+                                                </label>
+                                            </div>
+                                            <div class="radio">
+
+                                                <input type="radio" id="radioquestion4" name="radioChoice" value="D">
+                                                <label id="labelquestion4">
+                                                    D
+                                                </label>
+                                            </div>
+
+                                            <div>
+                                                <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                                                    <div class="form-group custom-mt-form-group">
+                                                        <button class="btn btn-primary mb-1" type="button" onclick="nextbuttoncall();" id="btnnext">Next</button>
+                                                        <button class="btn btn-warning mb-1" type="button" onclick="skipquestion();" id="btnskip">Skip</button>
+                                                        <button class="btn btn-secondary mb-1" type="button" onclick="previousbuttoncall();" id="btnprevious">Previous</button>
+                                                        <a href="~/studTest/resultview" class="btn btn-primary mr-1" onclick="subSurety();" value="btnSave" id="btnSave">SUBMIT</a>
+                                                        <p id="demo" hidden></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    @section Scripts{
+
+
+        <script>
+        $(document).ready(function () {
+             $.ajax({
+                type: "GET",
+                url: "@Url.Action("loadFirstQuestion", "studTest")",
+                data: {  },
+                 success: function (data) {
+                     console.log(data);
+                    
+                     $("#txtquestiontitle").text(data.onlyQuestion[0].title);
+                     $('#labelquestion1').text(data.onlyQuestion[0].cA);
+                     $('#labelquestion2').text(data.onlyQuestion[0].cB);
+                     $('#labelquestion3').text(data.onlyQuestion[0].cC);
+                     $('#labelquestion4').text(data.onlyQuestion[0].cD);
+
+                     if (indexTestQuestion <= size) {
+
+                         if (data.onlyQuestion.markChoices == "") {
+                             document.getElementById("radioquestion1").checked = false;
+                             document.getElementById("radioquestion2").checked = false;
+                             document.getElementById("radioquestion3").checked = false;
+                             document.getElementById("radioquestion4").checked = false;
+
+                         }
+                         else {
+                             if (data.onlyQuestion.markChoices == "A") {
+                                 document.getElementById("radioquestion1").checked = true;
+                                 document.getElementById("radioquestion2").checked = false;
+                                 document.getElementById("radioquestion3").checked = false;
+                                 document.getElementById("radioquestion4").checked = false;
+                             }
+                             else if (data.onlyQuestion.markChoices == "B") {
+                                 document.getElementById("radioquestion1").checked = false;
+                                 document.getElementById("radioquestion2").checked = true;
+                                 document.getElementById("radioquestion3").checked = false;
+                                 document.getElementById("radioquestion4").checked = false;
+                             }
+                             else if (data.onlyQuestion.markChoices == "C") {
+                                 document.getElementById("radioquestion1").checked = false;
+                                 document.getElementById("radioquestion2").checked = false;
+                                 document.getElementById("radioquestion3").checked = true;
+                                 document.getElementById("radioquestion4").checked = false;
+                             }
+                             else if (data.onlyQuestion.markChoices == "D") {
+                                 document.getElementById("radioquestion1").checked = false;
+                                 document.getElementById("radioquestion2").checked = false;
+                                 document.getElementById("radioquestion3").checked = false;
+                                 document.getElementById("radioquestion4").checked = true;
+                             }
+                         }
+                     }
+
+                     //indexTestQuestion = indexTestQuestion + 1;
+
+                     size = data.allQid.length;
+
+                     for (var i = 0; i < size ; i++) {
+                         testQuestions[i] = data.allQid[i];
+
+
+                         $('#ddquestions').append('<option value="' + data.allQid[i] + '">' + data.allQid[i]+'</option>');
+                     }
+                 },
+                 error: function (data) {
+
+                 }
+             });
+
+            StartTimer();
+        });
+
+
+        var interval = null;
+        function StartTimer() {
+            if (interval == null) {
+                var counter = 0;
+                var hours = 0;
+                var mint = 0;
+                interval = setInterval(function () {
+                    counter += 1;
+                    if (counter == 59) {
+                        mint += 1;
+                        counter = 0;
+                    }
+                    if (mint == 59) {
+                        hours += 1;
+                        mint = 0;
+                    }
+                    document.getElementById("lblCount").innerHTML = hours + ":" + mint+":" + counter;
+                }, 1000);
+            }
+        }
+
+
+        // For Next Button
+        function nextbuttoncall() {
+
+            var qid = testQuestions[indexTestQuestion];
+            if (indexTestQuestion >= size) {
+                indexTestQuestion = size - 1;
+            }
+            else {
+              indexTestQuestion += 1;
+
+            }
+            var nextQuestion = testQuestions[indexTestQuestion];
+            $('#ddquestions').val(qid);
+            radioChoice = document.querySelector('input[name="radioChoice"]:checked')?.value;
+
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("questionById", "studTest")",
+                data: { qid: qid, radioChoice: radioChoice, nextQ: nextQuestion },
+                success: function (data) {
+
+                    $("#txtquestiontitle").text(data.data.title);
+                    $('#labelquestion1').text(data.data.cA);
+                    $('#labelquestion2').text(data.data.cB);
+                    $('#labelquestion3').text(data.data.cC);
+                    $('#labelquestion4').text(data.data.cD);
+
+                    if (indexTestQuestion < size && data.data != null) {
+
+                        if (data.data.markChoices == "") {
+                            document.getElementById("radioquestion1").checked = false;
+                            document.getElementById("radioquestion2").checked = false;
+                            document.getElementById("radioquestion3").checked = false;
+                            document.getElementById("radioquestion4").checked = false;
+
+                        }
+                        else {
+                            if (data.data.markChoices == "A") {
+                                document.getElementById("radioquestion1").checked = true;
+                                document.getElementById("radioquestion2").checked = false;
+                                document.getElementById("radioquestion3").checked = false;
+                                document.getElementById("radioquestion4").checked = false;
+                            }
+                            else if (data.data.markChoices == "B") {
+                                document.getElementById("radioquestion1").checked = false;
+                                document.getElementById("radioquestion2").checked = true;
+                                document.getElementById("radioquestion3").checked = false;
+                                document.getElementById("radioquestion4").checked = false;
+                            }
+                            else if (data.data.markChoices == "C") {
+                                document.getElementById("radioquestion1").checked = false;
+                                document.getElementById("radioquestion2").checked = false;
+                                document.getElementById("radioquestion3").checked = true;
+                                document.getElementById("radioquestion4").checked = false;
+                            }
+                            else if (data.data.markChoices == "D") {
+                                document.getElementById("radioquestion1").checked = false;
+                                document.getElementById("radioquestion2").checked = false;
+                                document.getElementById("radioquestion3").checked = false;
+                                document.getElementById("radioquestion4").checked = true;
+                            }
+
+                        }
+                    }
+                    if (indexTestQuestion+1 == size) {
+                        $("#submit").show();
+                    }
+
+                  },
+                error: function () {
+                    alert("Questions ended!");
+                }
+
+            });
+        }
+
+
+        // For Previous Button
+        function previousbuttoncall() {
+
+            var qid = testQuestions[indexTestQuestion];
+            if (indexTestQuestion <= 0) {
+                indexTestQuestion = 0;
+            }
+            else {
+                indexTestQuestion -= 1;
+            }
+            //indexTestQuestion = indexTestQuestion - 1;
+            var prevQuestion = testQuestions[indexTestQuestion];
+
+            $('#ddquestions').val(qid);
+            radioChoice = document.querySelector('input[name="radioChoice"]:checked')?.value;
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("questionById", "studTest")",
+                data: { qid: qid, radioChoice: radioChoice, nextQ: prevQuestion, },
+                success: function (data) {
+
+                    if (indexTestQuestion > 0) {
+                        $("#txtquestiontitle").text(data.data.title);
+                        if (data.data.markChoices == "") {
+
+
+                            document.getElementById("radioquestion1").checked = false;
+                            document.getElementById("radioquestion2").checked = false;
+                            document.getElementById("radioquestion3").checked = false;
+                            document.getElementById("radioquestion4").checked = false;
+                        }
+                        else if (data.data.markChoices == "A") {
+                            document.getElementById("radioquestion1").checked = true;
+                            document.getElementById("radioquestion2").checked = false;
+                            document.getElementById("radioquestion3").checked = false;
+                            document.getElementById("radioquestion4").checked = false;
+
+                        }
+                        else if (data.data.markChoices == "B") {
+                            document.getElementById("radioquestion1").checked = false;
+                            document.getElementById("radioquestion2").checked = true;
+                            document.getElementById("radioquestion3").checked = false;
+                            document.getElementById("radioquestion4").checked = false;
+                        }
+                        else if (data.data.markChoices == "C") {
+                            document.getElementById("radioquestion1").checked = false;
+                            document.getElementById("radioquestion2").checked = false;
+                            document.getElementById("radioquestion3").checked = true;
+                            document.getElementById("radioquestion4").checked = false;
+                        }
+                        else if (data.data.markChoices == "D") {
+                            document.getElementById("radioquestion1").checked = false;
+                            document.getElementById("radioquestion2").checked = false;
+                            document.getElementById("radioquestion3").checked = false;
+                            document.getElementById("radioquestion4").checked = true;
+                        }
+                      }
+
+
+                },
+                error: function () {
+                    alert("Question not loaded!");
+                }
+
+
+            });
+        }
+
+
+        // For Skip Button
+        function skipquestion() {
+
+            var qid = testQuestions[indexTestQuestion];
+            indexTestQuestion += 1;
+            var quesid = testQuestions[indexTestQuestion];
+            $('#ddquestions').val(quesid);
+
+                $.ajax({
+                    type: "GET",
+                    url: "@Url.Action("questionSkip", "studTest")",
+                    data: { qid: quesid },
+                    success: function (data) {
+                        console.log(data);
+
+                        $("#txtquestiontitle").text(data.allQuestion.questionTitle);
+                        $('#labelquestion1').text(data.allQuestion.choiceA);
+                        $('#labelquestion2').text(data.allQuestion.choiceB);
+                        $('#labelquestion3').text(data.allQuestion.choiceC);
+                        $('#labelquestion4').text(data.allQuestion.choiceD);
+
+
+                        if (indexTestQuestion + 1 == size) {
+                            $("#submit").show();
+                        }
+                    },
+                });
+
+        }
+
+
+        // For Drop Down List
+        function dropDown() {
+
+            var qid = $('#ddquestions').val();
+            indexTestQuestion += 1;
+            var nextQuestion = testQuestions[indexTestQuestion];
+            $('#ddquestions').val(qid);
+
+            radioChoice = document.querySelector('input[name="radioChoice"]:checked')?.value;
+
+            $.ajax({
+                type: "GET",
+                url: "@Url.Action("questionDropdown", "studTest")",
+                data: { qid: qid, nextQ: nextQuestion },
+                success: function (data) {
+                    console.log(data);
+
+                    $("#txtquestiontitle").text(data.data.title);
+                    $('#labelquestion1').text(data.data.cA);
+                    $('#labelquestion2').text(data.data.cB);
+                    $('#labelquestion3').text(data.data.cC);
+                    $('#labelquestion4').text(data.data.cD);
+
+                    if (data.data != null) {
+
+                        if (data.data.markChoices == "") {
+                            document.getElementById("radioquestion1").checked = false;
+                            document.getElementById("radioquestion2").checked = false;
+                            document.getElementById("radioquestion3").checked = false;
+                            document.getElementById("radioquestion4").checked = false;
+
+                        }
+                        else {
+                            if (data.data.markChoices == "A") {
+                                document.getElementById("radioquestion1").checked = true;
+                                document.getElementById("radioquestion2").checked = false;
+                                document.getElementById("radioquestion3").checked = false;
+                                document.getElementById("radioquestion4").checked = false;
+                            }
+                            else if (data.data.markChoices == "B") {
+                                document.getElementById("radioquestion1").checked = false;
+                                document.getElementById("radioquestion2").checked = true;
+                                document.getElementById("radioquestion3").checked = false;
+                                document.getElementById("radioquestion4").checked = false;
+                            }
+                            else if (data.data.markChoices == "C") {
+                                document.getElementById("radioquestion1").checked = false;
+                                document.getElementById("radioquestion2").checked = false;
+                                document.getElementById("radioquestion3").checked = true;
+                                document.getElementById("radioquestion4").checked = false;
+                            }
+                            else if (data.data.markChoices == "D") {
+                                document.getElementById("radioquestion1").checked = false;
+                                document.getElementById("radioquestion2").checked = false;
+                                document.getElementById("radioquestion3").checked = false;
+                                document.getElementById("radioquestion4").checked = true;
+                            }
+                        }
+                    }
+                                  var id = parseInt(qid);
+                                  var indexfound = testQuestions.indexOf(id);
+
+                    indexTestQuestion = indexfound;
+
+
+                    if (indexTestQuestion + 1 == size) {
+                        $("#submit").show();
+                    }
+                 },
+                error: function () {
+                    alert("Question not loaded!");
+                 }
+
+            });
+        }
+
+
+        function subSurety() {
+            let text = "Are you sure you want to submit?"
+            if (confirm(text) == true) {
+
+                let flag = false;
+                flag = confirm("The process will never rollback, Are you sure?")
+
+                if (flag) {
+                    text = "Test has been submited, Showing the result"
+                    alert(text);
+
+                    $.ajax({
+                        type: 'GET',
+                        url: "@Url.Action("result", "studTest")",
+                        data: {  },
+                        success: function (data) {
+
+                            //alert("Number of Questions = " + data.numberOfAttempQuestion);
+                            //alert("Total Marks = " + data.totlMarks);
+                            //alert("Obtain Marks = " + data.obtMarks);
+
+
+                        },
+                        error: function () {
+
+                            alert("Result not loaded!");
+                        }
+                    });
+                }
+                else { text = "Cancelled"; }
+            }
+            else {
+                text = "You cancelled!"
+            }
+            document.getElementById("demo").innerHTML = text;
+        }
+
+        </script>
+
+    }
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+        <link rel="shortcut icon" type="image/x-icon" href="~/assets/img/favicon.png">
+        <title>NMDCAT</title>
+        <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="~/assets/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="~/assets/css/font-awesome.min.css">
+        <link rel="stylesheet" type="text/css" href="~/assets/css/select2.min.css">
+        <link rel="stylesheet" type="text/css" href="~/assets/css/bootstrap-datetimepicker.min.css">
+        <link rel="stylesheet" type="text/css" href="~/assets/css/style.css">
+        <link href="../../dist/css/style.min.css" rel="stylesheet">
+
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <!--[if lt IE 9]>
+            <script src="assets/js/html5shiv.min.js"></script>
+            <script src="assets/js/respond.min.js"></script>
+        <![endif]-->
+        <style>
+            .page-wrapper {
+                display: block !important;
+            }
+        </style>
+    </head>
+

@@ -1,0 +1,630 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="nMDCATPrepTestModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="nMDCATPrepTestEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="classDomains" EntityType="nMDCATPrepTestModel.classDomain" />
+    <EntitySet Name="departmentRankings" EntityType="nMDCATPrepTestModel.departmentRanking" />
+    <EntitySet Name="Employees" EntityType="nMDCATPrepTestModel.Employee" />
+    <EntitySet Name="Privileges" EntityType="nMDCATPrepTestModel.Privilege" />
+    <EntitySet Name="questionTypeDomains" EntityType="nMDCATPrepTestModel.questionTypeDomain" />
+    <EntitySet Name="Roles" EntityType="nMDCATPrepTestModel.Role" />
+    <EntitySet Name="students" EntityType="nMDCATPrepTestModel.student" />
+    <EntitySet Name="studentAppearTests" EntityType="nMDCATPrepTestModel.studentAppearTest" />
+    <EntitySet Name="studentRegisterForTests" EntityType="nMDCATPrepTestModel.studentRegisterForTest" />
+    <EntitySet Name="subjects" EntityType="nMDCATPrepTestModel.subject" />
+    <EntitySet Name="sysdiagrams" EntityType="nMDCATPrepTestModel.sysdiagram" />
+    <EntitySet Name="tblAppLlicenses" EntityType="nMDCATPrepTestModel.tblAppLlicense" />
+    <EntitySet Name="tests" EntityType="nMDCATPrepTestModel.test" />
+    <EntitySet Name="testQuestions" EntityType="nMDCATPrepTestModel.testQuestion" />
+    <EntitySet Name="testQuestionDatabanks" EntityType="nMDCATPrepTestModel.testQuestionDatabank" />
+    <EntitySet Name="universityRankings" EntityType="nMDCATPrepTestModel.universityRanking" />
+    <EntitySet Name="Users" EntityType="nMDCATPrepTestModel.User" />
+    <EntitySet Name="userPowers" EntityType="nMDCATPrepTestModel.userPower" />
+    <EntitySet Name="UserRolePrivileges" EntityType="nMDCATPrepTestModel.UserRolePrivilege" />
+    <AssociationSet Name="FK_testQuestionDatabank_classDomain" Association="nMDCATPrepTestModel.FK_testQuestionDatabank_classDomain">
+      <End Role="classDomain" EntitySet="classDomains" />
+      <End Role="testQuestionDatabank" EntitySet="testQuestionDatabanks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_testQuestionDatabank_classDomain1" Association="nMDCATPrepTestModel.FK_testQuestionDatabank_classDomain1">
+      <End Role="classDomain" EntitySet="classDomains" />
+      <End Role="testQuestionDatabank" EntitySet="testQuestionDatabanks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Employee_subject" Association="nMDCATPrepTestModel.FK_Employee_subject">
+      <End Role="subject" EntitySet="subjects" />
+      <End Role="Employee" EntitySet="Employees" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Employee_User" Association="nMDCATPrepTestModel.FK_Employee_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Employee" EntitySet="Employees" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tblPrivil__creat__5A054B78" Association="nMDCATPrepTestModel.FK__tblPrivil__creat__5A054B78">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Privilege" EntitySet="Privileges" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tblPrivil__modif__5AF96FB1" Association="nMDCATPrepTestModel.FK__tblPrivil__modif__5AF96FB1">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Privilege" EntitySet="Privileges" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblRolePrivilege_tblPrivilege" Association="nMDCATPrepTestModel.FK_tblRolePrivilege_tblPrivilege">
+      <End Role="Privilege" EntitySet="Privileges" />
+      <End Role="UserRolePrivilege" EntitySet="UserRolePrivileges" />
+    </AssociationSet>
+    <AssociationSet Name="FK_testQuestionDatabank_questionTypeDomain" Association="nMDCATPrepTestModel.FK_testQuestionDatabank_questionTypeDomain">
+      <End Role="questionTypeDomain" EntitySet="questionTypeDomains" />
+      <End Role="testQuestionDatabank" EntitySet="testQuestionDatabanks" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tblRole__created__5DD5DC5C" Association="nMDCATPrepTestModel.FK__tblRole__created__5DD5DC5C">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Role" EntitySet="Roles" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tblRole__modifie__5ECA0095" Association="nMDCATPrepTestModel.FK__tblRole__modifie__5ECA0095">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Role" EntitySet="Roles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblRolePrivilege_tblRole" Association="nMDCATPrepTestModel.FK_tblRolePrivilege_tblRole">
+      <End Role="Role" EntitySet="Roles" />
+      <End Role="UserRolePrivilege" EntitySet="UserRolePrivileges" />
+    </AssociationSet>
+    <AssociationSet Name="FK_studentAppearTest_student" Association="nMDCATPrepTestModel.FK_studentAppearTest_student">
+      <End Role="student" EntitySet="students" />
+      <End Role="studentAppearTest" EntitySet="studentAppearTests" />
+    </AssociationSet>
+    <AssociationSet Name="FK_studentRegisterForTest_student" Association="nMDCATPrepTestModel.FK_studentRegisterForTest_student">
+      <End Role="student" EntitySet="students" />
+      <End Role="studentRegisterForTest" EntitySet="studentRegisterForTests" />
+    </AssociationSet>
+    <AssociationSet Name="FK_studentAppearTest_test" Association="nMDCATPrepTestModel.FK_studentAppearTest_test">
+      <End Role="test" EntitySet="tests" />
+      <End Role="studentAppearTest" EntitySet="studentAppearTests" />
+    </AssociationSet>
+    <AssociationSet Name="FK_studentAppearTest_testQuestionDatabank" Association="nMDCATPrepTestModel.FK_studentAppearTest_testQuestionDatabank">
+      <End Role="testQuestionDatabank" EntitySet="testQuestionDatabanks" />
+      <End Role="studentAppearTest" EntitySet="studentAppearTests" />
+    </AssociationSet>
+    <AssociationSet Name="FK_studentRegisterForTest_test" Association="nMDCATPrepTestModel.FK_studentRegisterForTest_test">
+      <End Role="test" EntitySet="tests" />
+      <End Role="studentRegisterForTest" EntitySet="studentRegisterForTests" />
+    </AssociationSet>
+    <AssociationSet Name="FK_testQuestionDatabank_subject" Association="nMDCATPrepTestModel.FK_testQuestionDatabank_subject">
+      <End Role="subject" EntitySet="subjects" />
+      <End Role="testQuestionDatabank" EntitySet="testQuestionDatabanks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_testQuestion_test" Association="nMDCATPrepTestModel.FK_testQuestion_test">
+      <End Role="test" EntitySet="tests" />
+      <End Role="testQuestion" EntitySet="testQuestions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_testQuestion_testQuestionDatabank" Association="nMDCATPrepTestModel.FK_testQuestion_testQuestionDatabank">
+      <End Role="testQuestionDatabank" EntitySet="testQuestionDatabanks" />
+      <End Role="testQuestion" EntitySet="testQuestions" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tblRolePr__creat__5FBE24CE" Association="nMDCATPrepTestModel.FK__tblRolePr__creat__5FBE24CE">
+      <End Role="User" EntitySet="Users" />
+      <End Role="UserRolePrivilege" EntitySet="UserRolePrivileges" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tblRolePr__modif__60B24907" Association="nMDCATPrepTestModel.FK__tblRolePr__modif__60B24907">
+      <End Role="User" EntitySet="Users" />
+      <End Role="UserRolePrivilege" EntitySet="UserRolePrivileges" />
+    </AssociationSet>
+    <AssociationSet Name="FK_userPower_User" Association="nMDCATPrepTestModel.FK_userPower_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="userPower" EntitySet="userPowers" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="classDomain">
+    <Key>
+      <PropertyRef Name="classid" />
+    </Key>
+    <Property Name="classid" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="classTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="testQuestionDatabanks" Relationship="nMDCATPrepTestModel.FK_testQuestionDatabank_classDomain" FromRole="classDomain" ToRole="testQuestionDatabank" />
+    <NavigationProperty Name="testQuestionDatabanks1" Relationship="nMDCATPrepTestModel.FK_testQuestionDatabank_classDomain1" FromRole="classDomain" ToRole="testQuestionDatabank" />
+  </EntityType>
+  <EntityType Name="departmentRanking">
+    <Key>
+      <PropertyRef Name="departmentRankingId" />
+    </Key>
+    <Property Name="departmentRankingId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="departmentName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="employeeId" />
+    </Key>
+    <Property Name="employeeId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="employeeName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="employeeFName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="DOB" Type="DateTime" Precision="3" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Contact" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="userId" Type="Int64" />
+    <Property Name="subjectId" Type="Int64" />
+    <NavigationProperty Name="subject" Relationship="nMDCATPrepTestModel.FK_Employee_subject" FromRole="Employee" ToRole="subject" />
+    <NavigationProperty Name="User" Relationship="nMDCATPrepTestModel.FK_Employee_User" FromRole="Employee" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Privilege">
+    <Key>
+      <PropertyRef Name="privilegeId" />
+    </Key>
+    <Property Name="privilegeId" Type="Int32" Nullable="false" />
+    <Property Name="privilegeTitle" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="createdBy" Type="Int64" Nullable="false" />
+    <Property Name="dateCreate" Type="DateTime" Precision="3" />
+    <Property Name="modifiedBy" Type="Int64" Nullable="false" />
+    <Property Name="dateModified" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="User" Relationship="nMDCATPrepTestModel.FK__tblPrivil__creat__5A054B78" FromRole="Privilege" ToRole="User" />
+    <NavigationProperty Name="User1" Relationship="nMDCATPrepTestModel.FK__tblPrivil__modif__5AF96FB1" FromRole="Privilege" ToRole="User" />
+    <NavigationProperty Name="UserRolePrivileges" Relationship="nMDCATPrepTestModel.FK_tblRolePrivilege_tblPrivilege" FromRole="Privilege" ToRole="UserRolePrivilege" />
+  </EntityType>
+  <EntityType Name="questionTypeDomain">
+    <Key>
+      <PropertyRef Name="qType" />
+    </Key>
+    <Property Name="qType" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="typeTitle" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="testQuestionDatabanks" Relationship="nMDCATPrepTestModel.FK_testQuestionDatabank_questionTypeDomain" FromRole="questionTypeDomain" ToRole="testQuestionDatabank" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="roleId" />
+    </Key>
+    <Property Name="roleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="mainRoleId" Type="Int32" Nullable="false" />
+    <Property Name="roleTitle" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="createdBy" Type="Int64" Nullable="false" />
+    <Property Name="dateCreate" Type="DateTime" Precision="3" />
+    <Property Name="modifiedBy" Type="Int64" Nullable="false" />
+    <Property Name="dateModified" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="User" Relationship="nMDCATPrepTestModel.FK__tblRole__created__5DD5DC5C" FromRole="Role" ToRole="User" />
+    <NavigationProperty Name="User1" Relationship="nMDCATPrepTestModel.FK__tblRole__modifie__5ECA0095" FromRole="Role" ToRole="User" />
+    <NavigationProperty Name="UserRolePrivileges" Relationship="nMDCATPrepTestModel.FK_tblRolePrivilege_tblRole" FromRole="Role" ToRole="UserRolePrivilege" />
+  </EntityType>
+  <EntityType Name="student">
+    <Key>
+      <PropertyRef Name="studentId" />
+    </Key>
+    <Property Name="studentId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="studentName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="studentFName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="gender" Type="Byte" />
+    <Property Name="DOB" Type="DateTime" Precision="0" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="contact" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="userName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="studentPicture" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="universityName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="departmentName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="studentAppearTests" Relationship="nMDCATPrepTestModel.FK_studentAppearTest_student" FromRole="student" ToRole="studentAppearTest" />
+    <NavigationProperty Name="studentRegisterForTests" Relationship="nMDCATPrepTestModel.FK_studentRegisterForTest_student" FromRole="student" ToRole="studentRegisterForTest" />
+  </EntityType>
+  <EntityType Name="studentAppearTest">
+    <Key>
+      <PropertyRef Name="studentAppearId" />
+    </Key>
+    <Property Name="studentAppearId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="testId" Type="Int64" />
+    <Property Name="studentId" Type="Int64" />
+    <Property Name="questionId" Type="Int64" />
+    <Property Name="correctChoice" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="student" Relationship="nMDCATPrepTestModel.FK_studentAppearTest_student" FromRole="studentAppearTest" ToRole="student" />
+    <NavigationProperty Name="test" Relationship="nMDCATPrepTestModel.FK_studentAppearTest_test" FromRole="studentAppearTest" ToRole="test" />
+    <NavigationProperty Name="testQuestionDatabank" Relationship="nMDCATPrepTestModel.FK_studentAppearTest_testQuestionDatabank" FromRole="studentAppearTest" ToRole="testQuestionDatabank" />
+  </EntityType>
+  <EntityType Name="studentRegisterForTest">
+    <Key>
+      <PropertyRef Name="srTestId" />
+    </Key>
+    <Property Name="srTestId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="studentId" Type="Int64" />
+    <Property Name="testId" Type="Int64" />
+    <Property Name="userName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="testStatus" Type="Boolean" />
+    <Property Name="status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="student" Relationship="nMDCATPrepTestModel.FK_studentRegisterForTest_student" FromRole="studentRegisterForTest" ToRole="student" />
+    <NavigationProperty Name="test" Relationship="nMDCATPrepTestModel.FK_studentRegisterForTest_test" FromRole="studentRegisterForTest" ToRole="test" />
+  </EntityType>
+  <EntityType Name="subject">
+    <Key>
+      <PropertyRef Name="subjectid" />
+    </Key>
+    <Property Name="subjectid" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="subjectTitle" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="class" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Employees" Relationship="nMDCATPrepTestModel.FK_Employee_subject" FromRole="subject" ToRole="Employee" />
+    <NavigationProperty Name="testQuestionDatabanks" Relationship="nMDCATPrepTestModel.FK_testQuestionDatabank_subject" FromRole="subject" ToRole="testQuestionDatabank" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="tblAppLlicense">
+    <Key>
+      <PropertyRef Name="licenseId" />
+    </Key>
+    <Property Name="licenseId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="dateTimeInitiated" Type="DateTime" Precision="3" />
+    <Property Name="uptoDate" Type="DateTime" Precision="3" />
+    <Property Name="timeStampPrevious" Type="Time" Precision="7" />
+    <Property Name="dateStampPrevious" Type="DateTime" Precision="0" />
+    <Property Name="timeSpan" Type="Int32" />
+    <Property Name="machineKey" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="numberOfRecords" Type="Int32" />
+    <Property Name="transectionsCount" Type="Int32" />
+    <Property Name="numberOfStudent" Type="Int32" />
+    <Property Name="dateTimeLicenseExpire" Type="DateTime" Precision="3" />
+    <Property Name="isActive" Type="Boolean" />
+    <Property Name="licenseKey" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="gracePeriod" Type="Int32" />
+    <Property Name="gracePeriodStart" Type="DateTime" Precision="3" />
+    <Property Name="gracePeriofEnd" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="test">
+    <Key>
+      <PropertyRef Name="testId" />
+    </Key>
+    <Property Name="testId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="testTitle" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="startTime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="endTime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="graceTime" Type="Int32" />
+    <Property Name="testConductionDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="studentAppearTests" Relationship="nMDCATPrepTestModel.FK_studentAppearTest_test" FromRole="test" ToRole="studentAppearTest" />
+    <NavigationProperty Name="studentRegisterForTests" Relationship="nMDCATPrepTestModel.FK_studentRegisterForTest_test" FromRole="test" ToRole="studentRegisterForTest" />
+    <NavigationProperty Name="testQuestions" Relationship="nMDCATPrepTestModel.FK_testQuestion_test" FromRole="test" ToRole="testQuestion" />
+  </EntityType>
+  <EntityType Name="testQuestion">
+    <Key>
+      <PropertyRef Name="testQuestionId" />
+    </Key>
+    <Property Name="testQuestionId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="questionId" Type="Int64" />
+    <Property Name="testId" Type="Int64" />
+    <Property Name="marks" Type="Int32" />
+    <NavigationProperty Name="test" Relationship="nMDCATPrepTestModel.FK_testQuestion_test" FromRole="testQuestion" ToRole="test" />
+    <NavigationProperty Name="testQuestionDatabank" Relationship="nMDCATPrepTestModel.FK_testQuestion_testQuestionDatabank" FromRole="testQuestion" ToRole="testQuestionDatabank" />
+  </EntityType>
+  <EntityType Name="testQuestionDatabank">
+    <Key>
+      <PropertyRef Name="questionId" />
+    </Key>
+    <Property Name="questionId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="questionTitle" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="choiceA" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="choiceB" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="choiceC" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="choiceD" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="subjectId" Type="Int64" />
+    <Property Name="questionClassId" Type="Int64" />
+    <Property Name="correctChoice" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+    <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="chapter" Type="Int32" />
+    <Property Name="qType" Type="Int32" />
+    <Property Name="correctChoiceForAll" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="classDomain" Relationship="nMDCATPrepTestModel.FK_testQuestionDatabank_classDomain" FromRole="testQuestionDatabank" ToRole="classDomain" />
+    <NavigationProperty Name="classDomain1" Relationship="nMDCATPrepTestModel.FK_testQuestionDatabank_classDomain1" FromRole="testQuestionDatabank" ToRole="classDomain" />
+    <NavigationProperty Name="questionTypeDomain" Relationship="nMDCATPrepTestModel.FK_testQuestionDatabank_questionTypeDomain" FromRole="testQuestionDatabank" ToRole="questionTypeDomain" />
+    <NavigationProperty Name="studentAppearTests" Relationship="nMDCATPrepTestModel.FK_studentAppearTest_testQuestionDatabank" FromRole="testQuestionDatabank" ToRole="studentAppearTest" />
+    <NavigationProperty Name="subject" Relationship="nMDCATPrepTestModel.FK_testQuestionDatabank_subject" FromRole="testQuestionDatabank" ToRole="subject" />
+    <NavigationProperty Name="testQuestions" Relationship="nMDCATPrepTestModel.FK_testQuestion_testQuestionDatabank" FromRole="testQuestionDatabank" ToRole="testQuestion" />
+  </EntityType>
+  <EntityType Name="universityRanking">
+    <Key>
+      <PropertyRef Name="universityRankingId" />
+    </Key>
+    <Property Name="universityRankingId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="universityName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="userId" />
+    </Key>
+    <Property Name="userId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="userName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="userPassword" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="ucontrol" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Employees" Relationship="nMDCATPrepTestModel.FK_Employee_User" FromRole="User" ToRole="Employee" />
+    <NavigationProperty Name="Privileges" Relationship="nMDCATPrepTestModel.FK__tblPrivil__creat__5A054B78" FromRole="User" ToRole="Privilege" />
+    <NavigationProperty Name="Privileges1" Relationship="nMDCATPrepTestModel.FK__tblPrivil__modif__5AF96FB1" FromRole="User" ToRole="Privilege" />
+    <NavigationProperty Name="Roles" Relationship="nMDCATPrepTestModel.FK__tblRole__created__5DD5DC5C" FromRole="User" ToRole="Role" />
+    <NavigationProperty Name="Roles1" Relationship="nMDCATPrepTestModel.FK__tblRole__modifie__5ECA0095" FromRole="User" ToRole="Role" />
+    <NavigationProperty Name="UserRolePrivileges" Relationship="nMDCATPrepTestModel.FK__tblRolePr__creat__5FBE24CE" FromRole="User" ToRole="UserRolePrivilege" />
+    <NavigationProperty Name="UserRolePrivileges1" Relationship="nMDCATPrepTestModel.FK__tblRolePr__modif__60B24907" FromRole="User" ToRole="UserRolePrivilege" />
+    <NavigationProperty Name="userPowers" Relationship="nMDCATPrepTestModel.FK_userPower_User" FromRole="User" ToRole="userPower" />
+  </EntityType>
+  <EntityType Name="userPower">
+    <Key>
+      <PropertyRef Name="userPowerId" />
+    </Key>
+    <Property Name="userPowerId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="userId" Type="Int64" />
+    <Property Name="isPowerful" Type="Boolean" />
+    <NavigationProperty Name="User" Relationship="nMDCATPrepTestModel.FK_userPower_User" FromRole="userPower" ToRole="User" />
+  </EntityType>
+  <EntityType Name="UserRolePrivilege">
+    <Key>
+      <PropertyRef Name="upvId" />
+    </Key>
+    <Property Name="upvId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="roleId" Type="Int32" Nullable="false" />
+    <Property Name="privilegeId" Type="Int32" Nullable="false" />
+    <Property Name="userId" Type="Int64" Nullable="false" />
+    <Property Name="createdBy" Type="Int64" Nullable="false" />
+    <Property Name="dateCreate" Type="DateTime" Precision="3" />
+    <Property Name="modifiedBy" Type="Int64" Nullable="false" />
+    <Property Name="dateModified" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Privilege" Relationship="nMDCATPrepTestModel.FK_tblRolePrivilege_tblPrivilege" FromRole="UserRolePrivilege" ToRole="Privilege" />
+    <NavigationProperty Name="Role" Relationship="nMDCATPrepTestModel.FK_tblRolePrivilege_tblRole" FromRole="UserRolePrivilege" ToRole="Role" />
+    <NavigationProperty Name="User" Relationship="nMDCATPrepTestModel.FK__tblRolePr__creat__5FBE24CE" FromRole="UserRolePrivilege" ToRole="User" />
+    <NavigationProperty Name="User1" Relationship="nMDCATPrepTestModel.FK__tblRolePr__modif__60B24907" FromRole="UserRolePrivilege" ToRole="User" />
+  </EntityType>
+  <Association Name="FK_testQuestionDatabank_classDomain">
+    <End Type="nMDCATPrepTestModel.classDomain" Role="classDomain" Multiplicity="0..1" />
+    <End Type="nMDCATPrepTestModel.testQuestionDatabank" Role="testQuestionDatabank" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="classDomain">
+        <PropertyRef Name="classid" />
+      </Principal>
+      <Dependent Role="testQuestionDatabank">
+        <PropertyRef Name="questionClassId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_testQuestionDatabank_classDomain1">
+    <End Type="nMDCATPrepTestModel.classDomain" Role="classDomain" Multiplicity="0..1" />
+    <End Type="nMDCATPrepTestModel.testQuestionDatabank" Role="testQuestionDatabank" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="classDomain">
+        <PropertyRef Name="classid" />
+      </Principal>
+      <Dependent Role="testQuestionDatabank">
+        <PropertyRef Name="questionClassId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Employee_subject">
+    <End Type="nMDCATPrepTestModel.subject" Role="subject" Multiplicity="0..1" />
+    <End Type="nMDCATPrepTestModel.Employee" Role="Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="subject">
+        <PropertyRef Name="subjectid" />
+      </Principal>
+      <Dependent Role="Employee">
+        <PropertyRef Name="subjectId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Employee_User">
+    <End Type="nMDCATPrepTestModel.User" Role="User" Multiplicity="0..1" />
+    <End Type="nMDCATPrepTestModel.Employee" Role="Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="userId" />
+      </Principal>
+      <Dependent Role="Employee">
+        <PropertyRef Name="userId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tblPrivil__creat__5A054B78">
+    <End Type="nMDCATPrepTestModel.User" Role="User" Multiplicity="1" />
+    <End Type="nMDCATPrepTestModel.Privilege" Role="Privilege" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="userId" />
+      </Principal>
+      <Dependent Role="Privilege">
+        <PropertyRef Name="createdBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tblPrivil__modif__5AF96FB1">
+    <End Type="nMDCATPrepTestModel.User" Role="User" Multiplicity="1" />
+    <End Type="nMDCATPrepTestModel.Privilege" Role="Privilege" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="userId" />
+      </Principal>
+      <Dependent Role="Privilege">
+        <PropertyRef Name="modifiedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblRolePrivilege_tblPrivilege">
+    <End Type="nMDCATPrepTestModel.Privilege" Role="Privilege" Multiplicity="1" />
+    <End Type="nMDCATPrepTestModel.UserRolePrivilege" Role="UserRolePrivilege" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Privilege">
+        <PropertyRef Name="privilegeId" />
+      </Principal>
+      <Dependent Role="UserRolePrivilege">
+        <PropertyRef Name="privilegeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_testQuestionDatabank_questionTypeDomain">
+    <End Type="nMDCATPrepTestModel.questionTypeDomain" Role="questionTypeDomain" Multiplicity="0..1" />
+    <End Type="nMDCATPrepTestModel.testQuestionDatabank" Role="testQuestionDatabank" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="questionTypeDomain">
+        <PropertyRef Name="qType" />
+      </Principal>
+      <Dependent Role="testQuestionDatabank">
+        <PropertyRef Name="qType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tblRole__created__5DD5DC5C">
+    <End Type="nMDCATPrepTestModel.User" Role="User" Multiplicity="1" />
+    <End Type="nMDCATPrepTestModel.Role" Role="Role" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="userId" />
+      </Principal>
+      <Dependent Role="Role">
+        <PropertyRef Name="createdBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tblRole__modifie__5ECA0095">
+    <End Type="nMDCATPrepTestModel.User" Role="User" Multiplicity="1" />
+    <End Type="nMDCATPrepTestModel.Role" Role="Role" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="userId" />
+      </Principal>
+      <Dependent Role="Role">
+        <PropertyRef Name="modifiedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblRolePrivilege_tblRole">
+    <End Type="nMDCATPrepTestModel.Role" Role="Role" Multiplicity="1" />
+    <End Type="nMDCATPrepTestModel.UserRolePrivilege" Role="UserRolePrivilege" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="roleId" />
+      </Principal>
+      <Dependent Role="UserRolePrivilege">
+        <PropertyRef Name="roleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_studentAppearTest_student">
+    <End Type="nMDCATPrepTestModel.student" Role="student" Multiplicity="0..1" />
+    <End Type="nMDCATPrepTestModel.studentAppearTest" Role="studentAppearTest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="student">
+        <PropertyRef Name="studentId" />
+      </Principal>
+      <Dependent Role="studentAppearTest">
+        <PropertyRef Name="studentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_studentRegisterForTest_student">
+    <End Type="nMDCATPrepTestModel.student" Role="student" Multiplicity="0..1" />
+    <End Type="nMDCATPrepTestModel.studentRegisterForTest" Role="studentRegisterForTest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="student">
+        <PropertyRef Name="studentId" />
+      </Principal>
+      <Dependent Role="studentRegisterForTest">
+        <PropertyRef Name="studentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_studentAppearTest_test">
+    <End Type="nMDCATPrepTestModel.test" Role="test" Multiplicity="0..1" />
+    <End Type="nMDCATPrepTestModel.studentAppearTest" Role="studentAppearTest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="test">
+        <PropertyRef Name="testId" />
+      </Principal>
+      <Dependent Role="studentAppearTest">
+        <PropertyRef Name="testId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_studentAppearTest_testQuestionDatabank">
+    <End Type="nMDCATPrepTestModel.testQuestionDatabank" Role="testQuestionDatabank" Multiplicity="0..1" />
+    <End Type="nMDCATPrepTestModel.studentAppearTest" Role="studentAppearTest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="testQuestionDatabank">
+        <PropertyRef Name="questionId" />
+      </Principal>
+      <Dependent Role="studentAppearTest">
+        <PropertyRef Name="questionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_studentRegisterForTest_test">
+    <End Type="nMDCATPrepTestModel.test" Role="test" Multiplicity="0..1" />
+    <End Type="nMDCATPrepTestModel.studentRegisterForTest" Role="studentRegisterForTest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="test">
+        <PropertyRef Name="testId" />
+      </Principal>
+      <Dependent Role="studentRegisterForTest">
+        <PropertyRef Name="testId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_testQuestionDatabank_subject">
+    <End Type="nMDCATPrepTestModel.subject" Role="subject" Multiplicity="0..1" />
+    <End Type="nMDCATPrepTestModel.testQuestionDatabank" Role="testQuestionDatabank" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="subject">
+        <PropertyRef Name="subjectid" />
+      </Principal>
+      <Dependent Role="testQuestionDatabank">
+        <PropertyRef Name="subjectId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_testQuestion_test">
+    <End Type="nMDCATPrepTestModel.test" Role="test" Multiplicity="0..1" />
+    <End Type="nMDCATPrepTestModel.testQuestion" Role="testQuestion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="test">
+        <PropertyRef Name="testId" />
+      </Principal>
+      <Dependent Role="testQuestion">
+        <PropertyRef Name="testId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_testQuestion_testQuestionDatabank">
+    <End Type="nMDCATPrepTestModel.testQuestionDatabank" Role="testQuestionDatabank" Multiplicity="0..1" />
+    <End Type="nMDCATPrepTestModel.testQuestion" Role="testQuestion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="testQuestionDatabank">
+        <PropertyRef Name="questionId" />
+      </Principal>
+      <Dependent Role="testQuestion">
+        <PropertyRef Name="questionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tblRolePr__creat__5FBE24CE">
+    <End Type="nMDCATPrepTestModel.User" Role="User" Multiplicity="1" />
+    <End Type="nMDCATPrepTestModel.UserRolePrivilege" Role="UserRolePrivilege" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="userId" />
+      </Principal>
+      <Dependent Role="UserRolePrivilege">
+        <PropertyRef Name="createdBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tblRolePr__modif__60B24907">
+    <End Type="nMDCATPrepTestModel.User" Role="User" Multiplicity="1" />
+    <End Type="nMDCATPrepTestModel.UserRolePrivilege" Role="UserRolePrivilege" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="userId" />
+      </Principal>
+      <Dependent Role="UserRolePrivilege">
+        <PropertyRef Name="modifiedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_userPower_User">
+    <End Type="nMDCATPrepTestModel.User" Role="User" Multiplicity="0..1" />
+    <End Type="nMDCATPrepTestModel.userPower" Role="userPower" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="userId" />
+      </Principal>
+      <Dependent Role="userPower">
+        <PropertyRef Name="userId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

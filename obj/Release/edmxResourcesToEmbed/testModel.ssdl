@@ -1,0 +1,586 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="nMDCATPrepTestModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="classDomain">
+    <Key>
+      <PropertyRef Name="classid" />
+    </Key>
+    <Property Name="classid" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="classTitle" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="departmentRanking">
+    <Key>
+      <PropertyRef Name="departmentRankingId" />
+    </Key>
+    <Property Name="departmentRankingId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="departmentName" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="employeeId" />
+    </Key>
+    <Property Name="employeeId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="employeeName" Type="varchar(max)" />
+    <Property Name="employeeFName" Type="varchar(max)" />
+    <Property Name="DOB" Type="datetime" />
+    <Property Name="Email" Type="varchar" MaxLength="50" />
+    <Property Name="Contact" Type="nvarchar" MaxLength="50" />
+    <Property Name="userId" Type="bigint" />
+    <Property Name="subjectId" Type="bigint" />
+  </EntityType>
+  <EntityType Name="Privilege">
+    <Key>
+      <PropertyRef Name="privilegeId" />
+    </Key>
+    <Property Name="privilegeId" Type="int" Nullable="false" />
+    <Property Name="privilegeTitle" Type="nvarchar" MaxLength="100" />
+    <Property Name="createdBy" Type="bigint" Nullable="false" />
+    <Property Name="dateCreate" Type="datetime" />
+    <Property Name="modifiedBy" Type="bigint" Nullable="false" />
+    <Property Name="dateModified" Type="datetime" />
+  </EntityType>
+  <EntityType Name="questionTypeDomain">
+    <Key>
+      <PropertyRef Name="qType" />
+    </Key>
+    <Property Name="qType" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="typeTitle" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="roleId" />
+    </Key>
+    <Property Name="roleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="mainRoleId" Type="int" Nullable="false" />
+    <Property Name="roleTitle" Type="nvarchar" MaxLength="100" />
+    <Property Name="createdBy" Type="bigint" Nullable="false" />
+    <Property Name="dateCreate" Type="datetime" />
+    <Property Name="modifiedBy" Type="bigint" Nullable="false" />
+    <Property Name="dateModified" Type="datetime" />
+  </EntityType>
+  <EntityType Name="student">
+    <Key>
+      <PropertyRef Name="studentId" />
+    </Key>
+    <Property Name="studentId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="studentName" Type="nvarchar(max)" />
+    <Property Name="studentFName" Type="nvarchar(max)" />
+    <Property Name="gender" Type="tinyint" />
+    <Property Name="DOB" Type="date" />
+    <Property Name="email" Type="nvarchar" MaxLength="50" />
+    <Property Name="contact" Type="nvarchar" MaxLength="50" />
+    <Property Name="userName" Type="nvarchar" MaxLength="50" />
+    <Property Name="password" Type="nvarchar(max)" />
+    <Property Name="studentPicture" Type="varchar" MaxLength="250" />
+    <Property Name="universityName" Type="nvarchar(max)" />
+    <Property Name="departmentName" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="studentAppearTest">
+    <Key>
+      <PropertyRef Name="studentAppearId" />
+    </Key>
+    <Property Name="studentAppearId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="testId" Type="bigint" />
+    <Property Name="studentId" Type="bigint" />
+    <Property Name="questionId" Type="bigint" />
+    <Property Name="correctChoice" Type="varchar" MaxLength="1" />
+  </EntityType>
+  <EntityType Name="studentRegisterForTest">
+    <Key>
+      <PropertyRef Name="srTestId" />
+    </Key>
+    <Property Name="srTestId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="studentId" Type="bigint" />
+    <Property Name="testId" Type="bigint" />
+    <Property Name="userName" Type="nvarchar(max)" />
+    <Property Name="password" Type="nvarchar(max)" />
+    <Property Name="testStatus" Type="bit" />
+    <Property Name="status" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="subject">
+    <Key>
+      <PropertyRef Name="subjectid" />
+    </Key>
+    <Property Name="subjectid" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="subjectTitle" Type="varchar(max)" />
+    <Property Name="class" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="tblAppLlicense">
+    <Key>
+      <PropertyRef Name="licenseId" />
+    </Key>
+    <Property Name="licenseId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="dateTimeInitiated" Type="datetime" />
+    <Property Name="uptoDate" Type="datetime" />
+    <Property Name="timeStampPrevious" Type="time" Precision="7" />
+    <Property Name="dateStampPrevious" Type="date" />
+    <Property Name="timeSpan" Type="int" />
+    <Property Name="machineKey" Type="nvarchar(max)" />
+    <Property Name="numberOfRecords" Type="int" />
+    <Property Name="transectionsCount" Type="int" />
+    <Property Name="numberOfStudent" Type="int" />
+    <Property Name="dateTimeLicenseExpire" Type="datetime" />
+    <Property Name="isActive" Type="bit" />
+    <Property Name="licenseKey" Type="nvarchar(max)" />
+    <Property Name="gracePeriod" Type="int" />
+    <Property Name="gracePeriodStart" Type="datetime" />
+    <Property Name="gracePeriofEnd" Type="datetime" />
+  </EntityType>
+  <EntityType Name="test">
+    <Key>
+      <PropertyRef Name="testId" />
+    </Key>
+    <Property Name="testId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="testTitle" Type="varchar(max)" />
+    <Property Name="startTime" Type="nvarchar" MaxLength="50" />
+    <Property Name="endTime" Type="nvarchar" MaxLength="50" />
+    <Property Name="graceTime" Type="int" />
+    <Property Name="testConductionDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="testQuestion">
+    <Key>
+      <PropertyRef Name="testQuestionId" />
+    </Key>
+    <Property Name="testQuestionId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="questionId" Type="bigint" />
+    <Property Name="testId" Type="bigint" />
+    <Property Name="marks" Type="int" />
+  </EntityType>
+  <EntityType Name="testQuestionDatabank">
+    <Key>
+      <PropertyRef Name="questionId" />
+    </Key>
+    <Property Name="questionId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="questionTitle" Type="varchar(max)" />
+    <Property Name="choiceA" Type="varchar(max)" />
+    <Property Name="choiceB" Type="varchar(max)" />
+    <Property Name="choiceC" Type="varchar(max)" />
+    <Property Name="choiceD" Type="varchar(max)" />
+    <Property Name="subjectId" Type="bigint" />
+    <Property Name="questionClassId" Type="bigint" />
+    <Property Name="correctChoice" Type="nvarchar" MaxLength="1" />
+    <Property Name="description" Type="nvarchar(max)" />
+    <Property Name="chapter" Type="int" />
+    <Property Name="qType" Type="int" />
+    <Property Name="correctChoiceForAll" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="universityRanking">
+    <Key>
+      <PropertyRef Name="universityRankingId" />
+    </Key>
+    <Property Name="universityRankingId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="universityName" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="userId" />
+    </Key>
+    <Property Name="userId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="userName" Type="varchar(max)" />
+    <Property Name="userPassword" Type="nvarchar" MaxLength="20" />
+    <Property Name="ucontrol" Type="nvarchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="userPower">
+    <Key>
+      <PropertyRef Name="userPowerId" />
+    </Key>
+    <Property Name="userPowerId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="userId" Type="bigint" />
+    <Property Name="isPowerful" Type="bit" />
+  </EntityType>
+  <EntityType Name="UserRolePrivilege">
+    <Key>
+      <PropertyRef Name="upvId" />
+    </Key>
+    <Property Name="upvId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="roleId" Type="int" Nullable="false" />
+    <Property Name="privilegeId" Type="int" Nullable="false" />
+    <Property Name="userId" Type="bigint" Nullable="false" />
+    <Property Name="createdBy" Type="bigint" Nullable="false" />
+    <Property Name="dateCreate" Type="datetime" />
+    <Property Name="modifiedBy" Type="bigint" Nullable="false" />
+    <Property Name="dateModified" Type="datetime" />
+  </EntityType>
+  <Association Name="FK__tblPrivil__creat__5A054B78">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Privilege" Type="Self.Privilege" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="userId" />
+      </Principal>
+      <Dependent Role="Privilege">
+        <PropertyRef Name="createdBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tblPrivil__modif__5AF96FB1">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Privilege" Type="Self.Privilege" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="userId" />
+      </Principal>
+      <Dependent Role="Privilege">
+        <PropertyRef Name="modifiedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tblRole__created__5DD5DC5C">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Role" Type="Self.Role" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="userId" />
+      </Principal>
+      <Dependent Role="Role">
+        <PropertyRef Name="createdBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tblRole__modifie__5ECA0095">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Role" Type="Self.Role" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="userId" />
+      </Principal>
+      <Dependent Role="Role">
+        <PropertyRef Name="modifiedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tblRolePr__creat__5FBE24CE">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="UserRolePrivilege" Type="Self.UserRolePrivilege" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="userId" />
+      </Principal>
+      <Dependent Role="UserRolePrivilege">
+        <PropertyRef Name="createdBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tblRolePr__modif__60B24907">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="UserRolePrivilege" Type="Self.UserRolePrivilege" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="userId" />
+      </Principal>
+      <Dependent Role="UserRolePrivilege">
+        <PropertyRef Name="modifiedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Employee_subject">
+    <End Role="subject" Type="Self.subject" Multiplicity="0..1" />
+    <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="subject">
+        <PropertyRef Name="subjectid" />
+      </Principal>
+      <Dependent Role="Employee">
+        <PropertyRef Name="subjectId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Employee_User">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="userId" />
+      </Principal>
+      <Dependent Role="Employee">
+        <PropertyRef Name="userId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_studentAppearTest_student">
+    <End Role="student" Type="Self.student" Multiplicity="0..1" />
+    <End Role="studentAppearTest" Type="Self.studentAppearTest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="student">
+        <PropertyRef Name="studentId" />
+      </Principal>
+      <Dependent Role="studentAppearTest">
+        <PropertyRef Name="studentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_studentAppearTest_test">
+    <End Role="test" Type="Self.test" Multiplicity="0..1" />
+    <End Role="studentAppearTest" Type="Self.studentAppearTest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="test">
+        <PropertyRef Name="testId" />
+      </Principal>
+      <Dependent Role="studentAppearTest">
+        <PropertyRef Name="testId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_studentAppearTest_testQuestionDatabank">
+    <End Role="testQuestionDatabank" Type="Self.testQuestionDatabank" Multiplicity="0..1" />
+    <End Role="studentAppearTest" Type="Self.studentAppearTest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="testQuestionDatabank">
+        <PropertyRef Name="questionId" />
+      </Principal>
+      <Dependent Role="studentAppearTest">
+        <PropertyRef Name="questionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_studentRegisterForTest_student">
+    <End Role="student" Type="Self.student" Multiplicity="0..1" />
+    <End Role="studentRegisterForTest" Type="Self.studentRegisterForTest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="student">
+        <PropertyRef Name="studentId" />
+      </Principal>
+      <Dependent Role="studentRegisterForTest">
+        <PropertyRef Name="studentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_studentRegisterForTest_test">
+    <End Role="test" Type="Self.test" Multiplicity="0..1" />
+    <End Role="studentRegisterForTest" Type="Self.studentRegisterForTest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="test">
+        <PropertyRef Name="testId" />
+      </Principal>
+      <Dependent Role="studentRegisterForTest">
+        <PropertyRef Name="testId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblRolePrivilege_tblPrivilege">
+    <End Role="Privilege" Type="Self.Privilege" Multiplicity="1" />
+    <End Role="UserRolePrivilege" Type="Self.UserRolePrivilege" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Privilege">
+        <PropertyRef Name="privilegeId" />
+      </Principal>
+      <Dependent Role="UserRolePrivilege">
+        <PropertyRef Name="privilegeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblRolePrivilege_tblRole">
+    <End Role="Role" Type="Self.Role" Multiplicity="1" />
+    <End Role="UserRolePrivilege" Type="Self.UserRolePrivilege" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="roleId" />
+      </Principal>
+      <Dependent Role="UserRolePrivilege">
+        <PropertyRef Name="roleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_testQuestion_test">
+    <End Role="test" Type="Self.test" Multiplicity="0..1" />
+    <End Role="testQuestion" Type="Self.testQuestion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="test">
+        <PropertyRef Name="testId" />
+      </Principal>
+      <Dependent Role="testQuestion">
+        <PropertyRef Name="testId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_testQuestion_testQuestionDatabank">
+    <End Role="testQuestionDatabank" Type="Self.testQuestionDatabank" Multiplicity="0..1" />
+    <End Role="testQuestion" Type="Self.testQuestion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="testQuestionDatabank">
+        <PropertyRef Name="questionId" />
+      </Principal>
+      <Dependent Role="testQuestion">
+        <PropertyRef Name="questionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_testQuestionDatabank_classDomain">
+    <End Role="classDomain" Type="Self.classDomain" Multiplicity="0..1" />
+    <End Role="testQuestionDatabank" Type="Self.testQuestionDatabank" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="classDomain">
+        <PropertyRef Name="classid" />
+      </Principal>
+      <Dependent Role="testQuestionDatabank">
+        <PropertyRef Name="questionClassId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_testQuestionDatabank_classDomain1">
+    <End Role="classDomain" Type="Self.classDomain" Multiplicity="0..1" />
+    <End Role="testQuestionDatabank" Type="Self.testQuestionDatabank" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="classDomain">
+        <PropertyRef Name="classid" />
+      </Principal>
+      <Dependent Role="testQuestionDatabank">
+        <PropertyRef Name="questionClassId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_testQuestionDatabank_questionTypeDomain">
+    <End Role="questionTypeDomain" Type="Self.questionTypeDomain" Multiplicity="0..1" />
+    <End Role="testQuestionDatabank" Type="Self.testQuestionDatabank" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="questionTypeDomain">
+        <PropertyRef Name="qType" />
+      </Principal>
+      <Dependent Role="testQuestionDatabank">
+        <PropertyRef Name="qType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_testQuestionDatabank_subject">
+    <End Role="subject" Type="Self.subject" Multiplicity="0..1" />
+    <End Role="testQuestionDatabank" Type="Self.testQuestionDatabank" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="subject">
+        <PropertyRef Name="subjectid" />
+      </Principal>
+      <Dependent Role="testQuestionDatabank">
+        <PropertyRef Name="subjectId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_userPower_User">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="userPower" Type="Self.userPower" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="userId" />
+      </Principal>
+      <Dependent Role="userPower">
+        <PropertyRef Name="userId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="nMDCATPrepTestModelStoreContainer">
+    <EntitySet Name="classDomain" EntityType="Self.classDomain" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="departmentRanking" EntityType="Self.departmentRanking" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Privilege" EntityType="Self.Privilege" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="questionTypeDomain" EntityType="Self.questionTypeDomain" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="student" EntityType="Self.student" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="studentAppearTest" EntityType="Self.studentAppearTest" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="studentRegisterForTest" EntityType="Self.studentRegisterForTest" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="subject" EntityType="Self.subject" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblAppLlicense" EntityType="Self.tblAppLlicense" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="test" EntityType="Self.test" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="testQuestion" EntityType="Self.testQuestion" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="testQuestionDatabank" EntityType="Self.testQuestionDatabank" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="universityRanking" EntityType="Self.universityRanking" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="userPower" EntityType="Self.userPower" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserRolePrivilege" EntityType="Self.UserRolePrivilege" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__tblPrivil__creat__5A054B78" Association="Self.FK__tblPrivil__creat__5A054B78">
+      <End Role="User" EntitySet="User" />
+      <End Role="Privilege" EntitySet="Privilege" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tblPrivil__modif__5AF96FB1" Association="Self.FK__tblPrivil__modif__5AF96FB1">
+      <End Role="User" EntitySet="User" />
+      <End Role="Privilege" EntitySet="Privilege" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tblRole__created__5DD5DC5C" Association="Self.FK__tblRole__created__5DD5DC5C">
+      <End Role="User" EntitySet="User" />
+      <End Role="Role" EntitySet="Role" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tblRole__modifie__5ECA0095" Association="Self.FK__tblRole__modifie__5ECA0095">
+      <End Role="User" EntitySet="User" />
+      <End Role="Role" EntitySet="Role" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tblRolePr__creat__5FBE24CE" Association="Self.FK__tblRolePr__creat__5FBE24CE">
+      <End Role="User" EntitySet="User" />
+      <End Role="UserRolePrivilege" EntitySet="UserRolePrivilege" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tblRolePr__modif__60B24907" Association="Self.FK__tblRolePr__modif__60B24907">
+      <End Role="User" EntitySet="User" />
+      <End Role="UserRolePrivilege" EntitySet="UserRolePrivilege" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Employee_subject" Association="Self.FK_Employee_subject">
+      <End Role="subject" EntitySet="subject" />
+      <End Role="Employee" EntitySet="Employee" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Employee_User" Association="Self.FK_Employee_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Employee" EntitySet="Employee" />
+    </AssociationSet>
+    <AssociationSet Name="FK_studentAppearTest_student" Association="Self.FK_studentAppearTest_student">
+      <End Role="student" EntitySet="student" />
+      <End Role="studentAppearTest" EntitySet="studentAppearTest" />
+    </AssociationSet>
+    <AssociationSet Name="FK_studentAppearTest_test" Association="Self.FK_studentAppearTest_test">
+      <End Role="test" EntitySet="test" />
+      <End Role="studentAppearTest" EntitySet="studentAppearTest" />
+    </AssociationSet>
+    <AssociationSet Name="FK_studentAppearTest_testQuestionDatabank" Association="Self.FK_studentAppearTest_testQuestionDatabank">
+      <End Role="testQuestionDatabank" EntitySet="testQuestionDatabank" />
+      <End Role="studentAppearTest" EntitySet="studentAppearTest" />
+    </AssociationSet>
+    <AssociationSet Name="FK_studentRegisterForTest_student" Association="Self.FK_studentRegisterForTest_student">
+      <End Role="student" EntitySet="student" />
+      <End Role="studentRegisterForTest" EntitySet="studentRegisterForTest" />
+    </AssociationSet>
+    <AssociationSet Name="FK_studentRegisterForTest_test" Association="Self.FK_studentRegisterForTest_test">
+      <End Role="test" EntitySet="test" />
+      <End Role="studentRegisterForTest" EntitySet="studentRegisterForTest" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblRolePrivilege_tblPrivilege" Association="Self.FK_tblRolePrivilege_tblPrivilege">
+      <End Role="Privilege" EntitySet="Privilege" />
+      <End Role="UserRolePrivilege" EntitySet="UserRolePrivilege" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblRolePrivilege_tblRole" Association="Self.FK_tblRolePrivilege_tblRole">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="UserRolePrivilege" EntitySet="UserRolePrivilege" />
+    </AssociationSet>
+    <AssociationSet Name="FK_testQuestion_test" Association="Self.FK_testQuestion_test">
+      <End Role="test" EntitySet="test" />
+      <End Role="testQuestion" EntitySet="testQuestion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_testQuestion_testQuestionDatabank" Association="Self.FK_testQuestion_testQuestionDatabank">
+      <End Role="testQuestionDatabank" EntitySet="testQuestionDatabank" />
+      <End Role="testQuestion" EntitySet="testQuestion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_testQuestionDatabank_classDomain" Association="Self.FK_testQuestionDatabank_classDomain">
+      <End Role="classDomain" EntitySet="classDomain" />
+      <End Role="testQuestionDatabank" EntitySet="testQuestionDatabank" />
+    </AssociationSet>
+    <AssociationSet Name="FK_testQuestionDatabank_classDomain1" Association="Self.FK_testQuestionDatabank_classDomain1">
+      <End Role="classDomain" EntitySet="classDomain" />
+      <End Role="testQuestionDatabank" EntitySet="testQuestionDatabank" />
+    </AssociationSet>
+    <AssociationSet Name="FK_testQuestionDatabank_questionTypeDomain" Association="Self.FK_testQuestionDatabank_questionTypeDomain">
+      <End Role="questionTypeDomain" EntitySet="questionTypeDomain" />
+      <End Role="testQuestionDatabank" EntitySet="testQuestionDatabank" />
+    </AssociationSet>
+    <AssociationSet Name="FK_testQuestionDatabank_subject" Association="Self.FK_testQuestionDatabank_subject">
+      <End Role="subject" EntitySet="subject" />
+      <End Role="testQuestionDatabank" EntitySet="testQuestionDatabank" />
+    </AssociationSet>
+    <AssociationSet Name="FK_userPower_User" Association="Self.FK_userPower_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="userPower" EntitySet="userPower" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

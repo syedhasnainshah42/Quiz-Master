@@ -1,0 +1,274 @@
+﻿@*@model Tuple<TrueFalseQuestion, int>
+
+<div id="true-false-test">
+    @Html.Partial("_TrueFalseTest", Model.Item1)
+</div>
+
+<div class="text-center">
+    <button id="skip" class="btn btn-secondary">Skip</button>
+    <button id="previous" class="btn btn-secondary">Previous</button>
+    <button id="next" class="btn btn-primary">Next</button>
+    <button id="cancel" class="btn btn-danger">Cancel</button>
+</div>
+
+<script>
+$(function() {
+    var questionCount = @Model.Item2;
+    var currentIndex = 0;
+
+    $('#skip').on('click', function() {
+        submitAnswer(null);
+    });
+
+    $('#previous').on('click', function() {
+        currentIndex--;
+        if (currentIndex < 0) {
+            currentIndex = 0;
+        }
+        getQuestion(currentIndex);
+    });
+
+    $('#next').on('click', function() {
+        submitAnswer(true);
+    });
+
+    $('#cancel').on('click', function() {
+        window.location.href = '@Url.Action("Index", "Home")';
+    });
+
+    function submitAnswer(answer) {
+        var questionId = $('#question-id').val();
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("SubmitAnswer", "TrueFalseTest")',
+            data: { id: questionId, answer: answer },
+            success: function(data) {
+                currentIndex++;
+                if (currentIndex >= questionCount) {
+                    window.location.href = '@Url.Action("Index", "Home")';
+                } else {
+                    getQuestion(currentIndex);
+                }
+            }
+        });
+    }
+
+    function getQuestion(index) {
+        $.ajax({
+            type: 'GET',
+            url: '@Url.Action("GetQuestion", "TrueFalseTest")',
+            data: { index: index },
+            success: function(data) {
+                $('#true-false-test').html(data);
+            }
+        });
+    }
+});
+</script>*@
+
+
+<div class="sidebar" id="sidebar">
+    <!-- sidebar -->
+    <div class="sidebar-inner slimscroll">
+        <div id="sidebar-menu" class="sidebar-menu">
+            <ul>
+                <li class="menu-title">Main</li>
+                <li class="active">
+                    <a href="index.html"><i class="fa fa-tachometer" aria-hidden="true"></i> Dashboard</a>
+                </li>
+                <li class="submenu">
+                    <a href="#"><i class="fa fa-user" aria-hidden="true"></i> <span> Teachers</span> <span class="menu-arrow"></span></a>
+                    <ul class="list-unstyled" style="display: none;">
+                        <li><a href="all-teachers.html">All Teachers</a></li>
+                        <li><a href="add-teacher.html">Add Teacher</a></li>
+                        <li><a href="edit-teacher.html">Edit Teacher</a></li>
+                        <li><a href="about-teacher.html">About Teacher</a></li>
+                    </ul>
+                </li>
+                <li class="submenu">
+                    <a href="#"><i class="fa fa-user" aria-hidden="true"></i> <span> Students</span> <span class="menu-arrow"></span></a>
+                    <ul class="list-unstyled" style="display: none;">
+                        <li><a href="all-students.html">All Students</a></li>
+                        <li><a href="add-student.html">Add Student</a></li>
+                        <li><a href="edit-student.html">Edit Student</a></li>
+                        <li><a href="about-student.html">About Student</a></li>
+                    </ul>
+                </li>
+                <li class="submenu">
+                    <a href="#"><i class="fa fa-user" aria-hidden="true"></i> <span> Parents</span> <span class="menu-arrow"></span></a>
+                    <ul class="list-unstyled" style="display: none;">
+                        <li><a href="all-parents.html">All Parents</a></li>
+                        <li><a href="add-parent.html">Add Parent</a></li>
+                        <li><a href="edit-parent.html">Edit Parent</a></li>
+                        <li><a href="about-parent.html">About Parent</a></li>
+                    </ul>
+                </li>
+                <li class="submenu">
+                    <a href="javascript:void(0);"><i class="fa fa-share-alt" aria-hidden="true"></i> <span>Apps</span> <span class="menu-arrow"></span></a>
+                    <ul style="display: none;">
+                        <li class="submenu">
+                            <a href="javascript:void(0);"><span>Email</span> <span class="menu-arrow"></span></a>
+                            <ul style="display: none;">
+                                <li><a href="compose.html"><span>Compose Mail</span></a></li>
+                                <li>
+                                    <a href="inbox.html"> <span> Inbox</span> </a>
+                                </li>
+                                <li><a href="mail-view.html"><span>Mailview</span></a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="chat.html"> Chat <span class="badge badge-pill bg-primary float-right">5</span></a>
+                        </li>
+                        <li class="submenu">
+                            <a href="#"><span> Calls</span> <span class="menu-arrow"></span></a>
+                            <ul class="list-unstyled" style="display: none;">
+                                <li><a href="voice-call.html">Voice Call</a></li>
+                                <li><a href="video-call.html">Video Call</a></li>
+                                <li><a href="incoming-call.html">Incoming Call</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="contacts.html"> Contacts</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="calendar.html" style="width: 80%; display: inline-block;"><i class="fa fa-calendar" aria-hidden="true"></i> Calendar</a>
+                </li>
+                <li>
+                    <a href="exam-list.html"><i class="fa fa-table" aria-hidden="true"></i> Exam list</a>
+                </li>
+                <li>
+                    <a href="holidays.html"><i class="fa fa-tasks" aria-hidden="true"></i> Holidays</a>
+                </li>
+                <li>
+                    <a href="calendar.html"><i class="fa fa-table" aria-hidden="true"></i> Events</a>
+                </li>
+                <li class="submenu">
+                    <a href="#"><i class="fa fa-book" aria-hidden="true"></i><span> Accounts </span> <span class="menu-arrow"></span></a>
+                    <ul class="list-unstyled" style="display: none;">
+                        <li><a href="invoices.html">Invoices</a></li>
+                        <li><a href="payments.html">Payments</a></li>
+                        <li><a href="expenses.html">Expenses</a></li>
+                        <li><a href="provident-fund.html">Provident Fund</a></li>
+                        <li><a href="taxes.html">Taxes</a></li>
+                    </ul>
+                </li>
+                <li class="submenu">
+                    <a href="#"><i class="fa fa-money" aria-hidden="true"></i><span> Payroll </span> <span class="menu-arrow"></span></a>
+                    <ul class="list-unstyled" style="display: none;">
+                        <li><a href="salary.html"> Employee Salary </a></li>
+                        <li><a href="salary-view.html"> Payslip </a></li>
+                    </ul>
+                </li>
+                <li class="submenu">
+                    <a href="#"><i class="fa fa-commenting-o" aria-hidden="true"></i> <span> Blog</span> <span class="menu-arrow"></span></a>
+                    <ul class="list-unstyled" style="display: none;">
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="blog-details.html">Blog View</a></li>
+                        <li><a href="add-blog.html">Add Blog</a></li>
+                        <li><a href="edit-blog.html">Edit Blog</a></li>
+                    </ul>
+                </li>
+                <li class="submenu">
+                    <a href="javascript:void(0);" class="noti-dot"><i class="fa fa-rocket" aria-hidden="true"></i> <span>Management </span> <span class="menu-arrow"></span></a>
+                    <ul style="display: none;">
+                        <li class="submenu">
+                            <a href="#" class="noti-dot"><span> Employees</span> <span class="menu-arrow"></span></a>
+                            <ul class="list-unstyled" style="display: none;">
+                                <li><a href="all-employees.html">All Employees</a></li>
+                                <li><a href="holidays.html">Holidays</a></li>
+                                <li><a href="leaves.html"><span>Leave Requests</span> <span class="badge badge-pill bg-primary float-right">1</span></a></li>
+                                <li><a href="attendance.html">Attendance</a></li>
+                                <li><a href="departments.html">Departments</a></li>
+                                <li><a href="designations.html">Designations</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="activities.html">Activities</a>
+                        </li>
+                        <li>
+                            <a href="users.html">Users</a>
+                        </li>
+                        <li class="submenu">
+                            <a href="#"><span> Reports </span> <span class="menu-arrow"></span></a>
+                            <ul class="list-unstyled" style="display: none;">
+                                <li><a href="expense-reports.html"> Expense Report </a></li>
+                                <li><a href="invoice-reports.html"> Invoice Report </a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="settings.html"><i class="fa fa-cog" aria-hidden="true"></i> Settings</a>
+                </li>
+                <li class="menu-title">UI Elements</li>
+                <li class="submenu">
+                    <a href="#"><i class="fa fa-laptop" aria-hidden="true"></i> <span> Components</span> <span class="menu-arrow"></span></a>
+                    <ul class="list-unstyled" style="display: none;">
+                        <li><a href="uikit.html">UI Kit</a></li>
+                        <li><a href="typography.html">Typography</a></li>
+                        <li><a href="tabs.html">Tabs</a></li>
+                    </ul>
+                </li>
+                <li class="submenu">
+                    <a href="#"><i class="fa fa-edit" aria-hidden="true"></i> <span> Forms</span> <span class="menu-arrow"></span></a>
+                    <ul class="list-unstyled" style="display: none;">
+                        <li><a href="basic-inputs.html">Basic Input</a></li>
+                        <li><a href="form-basic-inputs.html">Basic Inputs</a></li>
+                        <li><a href="form-input-groups.html">Input Groups</a></li>
+                        <li><a href="form-horizontal.html">Horizontal Form</a></li>
+                        <li><a href="form-vertical.html">Vertical Form</a></li>
+                    </ul>
+                </li>
+                <li class="submenu">
+                    <a href="#"><i class="fa fa-table" aria-hidden="true"></i> <span> Tables</span> <span class="menu-arrow"></span></a>
+                    <ul class="list-unstyled" style="display: none;">
+                        <li><a href="tables-basic.html">Basic Tables</a></li>
+                        <li><a href="tables-datatables.html">Data Table</a></li>
+                    </ul>
+                </li>
+                <li class="menu-title">Extras</li>
+                <li class="submenu">
+                    <a href="#"><i class="fa fa-columns" aria-hidden="true"></i> <span>Pages</span> <span class="menu-arrow"></span></a>
+                    <ul class="list-unstyled" style="display: none;">
+                        <li><a href="login.html"> Login </a></li>
+                        <li><a href="register.html"> Register </a></li>
+                        <li><a href="forgot-password.html"> Forgot Password </a></li>
+                        <li><a href="change-password2.html"> Change Password </a></li>
+                        <li><a href="lock-screen.html"> Lock Screen </a></li>
+                        <li><a href="profile.html"> Profile </a></li>
+                        <li><a href="gallery.html"> Gallery </a></li>
+                        <li><a href="error-404.html">404 Error </a></li>
+                        <li><a href="error-500.html">500 Error </a></li>
+                        <li><a href="blank-page.html"> Blank Page </a></li>
+                    </ul>
+                </li>
+                <li class="submenu">
+                    <a href="javascript:void(0);"><i class="fa fa-share-alt" aria-hidden="true"></i> <span>Multi Level</span> <span class="menu-arrow"></span></a>
+                    <ul style="display: none;">
+                        <li class="submenu">
+                            <a href="javascript:void(0);"><span>Level 1</span> <span class="menu-arrow"></span></a>
+                            <ul style="display: none;">
+                                <li><a href="javascript:void(0);"><span>Level 2</span></a></li>
+                                <li class="submenu">
+                                    <a href="javascript:void(0);"> <span> Level 2</span> <span class="menu-arrow"></span></a>
+                                    <ul class="list-unstyled" style="display: none;">
+                                        <li><a href="javascript:void(0);">Level 3</a></li>
+                                        <li><a href="javascript:void(0);">Level 3</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="javascript:void(0);"><span>Level 2</span></a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);"><span>Level 1</span></a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+

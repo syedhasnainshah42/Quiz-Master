@@ -1,0 +1,80 @@
+﻿@model NMDCATEtestPreparatory.test
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+    <!-- content -->
+    <div class="content container-fluid">
+        <div class="page-header">
+            <div class="row">
+                <div class="col-lg-7 col-md-12 col-sm-12 col-12">
+                    <h5 class="text-uppercase">Test Creation </h5>
+                </div>
+                @*<div class="col-lg-5 col-md-12 col-sm-12 col-12">
+                    <ul class="list-inline breadcrumb float-right">
+                        <li class="list-inline-item"><a href="index.html">Home</a></li>
+                        <li class="list-inline-item"><a href="index.html">Test list</a></li>
+                        <li class="list-inline-item">Test Creation</li>
+                    </ul>
+                </div>*@
+            </div>
+        </div>
+        <div class="page-content">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                    <div class="card">
+                        <div class="page-title">
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                                    <div class="page-title">Add New Test</div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                                    <form action="~/test/Index" method="post">
+                                        <div class="form-group custom-mt-form-group">
+                                            <input type="text" name="testTitle" id="testTitle" />
+                                            <label class="control-label w-100">Test Title</label><i class="bar"></i>
+                                        </div>
+
+                                        <div class="form-group custom-mt-form-group">
+                                            <input class="datetimepicker" type="datetime" id="testConductionDate" name="testConductionDate">
+                                            <label class="control-label w-100">Date Of Conduction</label><i class="bar"></i>
+                                        </div>
+                                        <div class="form-group custom-mt-form-group">
+                                            <input class="time" type="time" id="startTime" name="startTime" />
+                                            <label class="control-label w-100">Start Time</label><i class="bar"></i>
+                                        </div>
+                                        <div class="form-group custom-mt-form-group">
+                                            <input class="time" type="time" id="endTime" name="endTime" />
+                                            <label class="control-label w-100">End Time</label><i class="bar"></i>
+                                        </div>
+                                        <div class="form-group custom-mt-form-group">
+                                            <input type="text" name="graceTime" id="graceTime" />
+                                            <label class="control-label w-100">Grace Time</label><i class="bar"></i>
+                                        </div>
+
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                                            <div class="form-group text-center custom-mt-form-group">
+                                                <button class="btn btn-primary mr-2" type="submit">Submit</button>
+                                                <button class="btn btn-secondary" type="reset">Cancel</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+       </div>
+   
+
+
+

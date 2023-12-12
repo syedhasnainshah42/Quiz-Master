@@ -1,0 +1,217 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="page-header">
+    <div class="row">
+        <div class="col-lg-7 col-md-12 col-sm-12 col-12">
+            <h5 class="text-uppercase">Student Regestration Form</h5>
+        </div>
+        @*<div class="col-lg-5 col-md-12 col-sm-12 col-12">
+            <ul class="list-inline breadcrumb float-right">
+                <li class="list-inline-item"><a href="index.html">Home</a></li>
+                <li class="list-inline-item"><a href="index.html">Student</a></li>
+                <li class="list-inline-item"> add student</li>
+            </ul>
+        </div>*@
+    </div>
+</div>
+
+<div class="page-content">
+
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="card">
+                <div class="page-title">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                            <div class="page-title">Basic information</div>
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="card-body">
+                    <form action="~/student/Index" method="post" enctype="multipart/form-data">
+
+
+
+                        <div class=" row">
+
+                            <input type="hidden" name="studentId" id="studentId" />
+
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="form-group custom-mt-form-group">
+                                <input type="text" name="searchbycontact" id="searchbycontact" onblur="funsuggestion()" />
+                                <label class="control-label">Search By Contact</label><i class="bar"></i>
+                            </div>
+                        </div>
+                        <div class="form-group custom-mt-form-group">
+                            <input type="file" name="img" id="studentPicture" accept="image/*" />
+                            <label class="control-label">Student Picture</label><i class="bar"></i>
+                        </div>
+
+                        <div class="row">
+
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+
+                                <div class="form-group custom-mt-form-group">
+                                    <input type="text" name="studentName" id="studentName" />
+                                    <label class="control-label">Student Name</label><i class="bar"></i>
+                                </div>
+                                <div class="form-group custom-mt-form-group">
+                                    <input type="text" name="studentFName" id="studentFName" />
+                                    <label class="control-label">Father Name</label><i class="bar"></i>
+                                </div>
+                                <div class="form-group custom-mt-form-group">
+                                    <input class="datetimepicker" type="text" name="DOB" id="DOB">
+                                    <label class="control-label">Birth Date</label><i class="bar"></i>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                                <div class="form-group custom-mt-form-group">
+                                    <input type="text" name="email" id="email" />
+                                    <label class="control-label">Email</label><i class="bar"></i>
+                                </div>
+                                <div class="form-group custom-mt-form-group">
+                                    <input type="text" name="Contact" id="Contact" />
+                                    <label class="control-label">Contact</label><i class="bar"></i>
+                                </div>
+                                <div class="form-group custom-mt-form-group">
+                                    <select name="gender" id="gender">
+                                        <option>Male</option>
+                                        <option>Female</option>
+                                        <option>Other</option>
+                                    </select>
+                                    <label class="control-label">Gender</label><i class="bar"></i>
+                                </div>
+                                <div class="form-group custom-mt-form-group">
+                                    @*<input type="text" id="testStatus" name="testStatus" oninput="validateBinaryInput(this)" maxlength="1" />*@
+                                    <select id="testStatusSelect " name="testStatus" onchange="updateTestStatus()">
+                                        <option value="true">True</option>
+                                        <option value="false">False</option>
+                                    </select>
+                                    <label class="control-label">Test Status</label><i class="bar"></i>
+                                </div>
+
+                                <div class="form-group custom-mt-form-group">
+                                    <input type="hidden" name="userName" id="userName" />
+                                    @* <label class="control-label">User Name</label><i class="bar"></i>*@
+                                </div>
+
+                                <div class="form-group custom-mt-form-group">
+                                    <input type="hidden" name="password" id="password" />
+                                    @*  <label class="control-label">Password </label><i class="bar"></i>*@
+                                </div>
+                            </div>
+                        </div>
+                        @*<div class="form-group custom-mt-form-group">
+
+                            <label class="control-label">Select University</label><i class="bar"></i>
+                           
+                            @Html.DropDownList("universityRankings", null, new { @class = "form-control", required = true })
+
+                        </div>*@
+                        <div class="form-group custom-mt-form-group">
+                            
+                            <label class="control-label">Select Department</label><i class="bar"></i>
+                            @Html.DropDownList("departmentRankings", null, new { @class = "form-control", required = true })
+
+                        </div>
+                        <div class="col-sm-6 col-md-3">
+                            <div class="form-group custom-mt-form-group">
+                                @Html.DropDownList("ttest")
+                                <label class="control-label">Add To Test</label><i class="bar"></i>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                                <div class="form-group custom-mt-form-group">
+                                    <button type="submit" class="btn btn-success btn-block mt-4 mb-2" value="Save" id="save"> Save </button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+
+        function funsuggestion() {
+            var searchby = $("#searchbycontact").val();
+        $.ajax({
+                        type: "Get",
+                        url: '@Url.Action("searchByContact", "student")',
+                        contentType: "application/json; charset=utf-8",
+            data: { searchby: searchby},
+                        datatype: "json",
+                        success: function (data) {
+                            console.log(data);
+                            if (data.data != "") {
+                                $("#studentName").val(data.data.studentName);
+                                $("#studentFName").val(data.data.studentFName);
+
+                                if (data.data.gender == 1) {
+                                    $("#gender").val("Male");
+                                }
+                                else  {
+                                    $("#gender").val("Female");
+
+                                }
+
+                                $("#DOB").val(getDateFormatted(data.data.DOB));
+                                $("#email").val(data.data.email);
+                                $("#Contact").val(data.data.contact);
+                                $("#studentId").val(data.data.studentId);
+
+
+                            }
+
+                        },
+                        error: function () {
+                            alert("Error Orrured In server");
+                        }
+                    });
+        }
+        function getDateFormatted(date) {
+            debugger;
+            var pattern = /Date\(([^)]+)\)/;
+            var results = pattern.exec(date);
+            var dt = new Date(parseFloat(results[1]));
+            debugger;
+
+            var gdate = dt.getDate();
+
+
+            var month = (dt.getMonth() + 1);
+
+            return (month) + "/" + gdate + "/" + dt.getFullYear();
+        }
+</script>
+
+@*<script>
+        function validateBinaryInput(input) {
+            var binaryRegex = /^[01]$/; // Regular expression for matching 0 or 1
+            var inputValue = input.value;
+
+            if (!binaryRegex.test(inputValue)) {
+                // If the input value does not match the binaryRegex, clear the input field
+                input.value = '';
+            }
+        }
+    </script>*@
+<script>
+    function updateTestStatus() {
+        const testStatusSelect = document.getElementById('testStatusSelect');
+        const testStatus = testStatusSelect.value; // Get the selected value
+
+        // Perform your desired logic with the testStatus value here
+        // For example, you can display the current status:
+        const testStatusDisplay = document.getElementById('testStatusDisplay');
+        testStatusDisplay.textContent = `Test Status: ${testStatus}`;
+    }
+</script>

@@ -1,0 +1,156 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+    <link rel="shortcut icon" type="image/x-icon" href="~/assets/img/favicon.png">
+    <title>Quiz Master</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="~/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="~/assets/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="~/assets/css/select2.min.css">
+    <link rel="stylesheet" type="text/css" href="~/assets/css/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" type="text/css" href="~/assets/css/style.css">
+    <link href="../../dist/css/style.min.css" rel="stylesheet">
+
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <!--[if lt IE 9]>
+        <script src="assets/js/html5shiv.min.js"></script>
+        <script src="assets/js/respond.min.js"></script>
+    <![endif]-->
+    <style>
+        .page-wrapper {
+            display:block!important;
+        }
+    </style>
+</head>
+
+<body>
+
+    <script>
+        var testQuestions = [];
+        var indexTestQuestion = 0;
+        var size = 0;
+    </script>
+
+
+    <div class="main-wrapper">
+        <div class="header">
+            <!-- Header start -->
+            <div class="header-left">
+                <a href="Index.cshtml" class="logo">
+                    <img src="~/assets/img/logo.png" width="40" height="40" alt="">
+                    <span class="text-uppercase">NMDCAT Prep:</span>
+                </a>
+            </div>
+            <div class="page-title-box float-left">
+                <h3 class="text-uppercase">NMDCAT</h3>
+            </div>
+
+            <ul class="nav user-menu float-right">
+
+
+                <li class="nav-item dropdown has-arrow">
+
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="profile.html">My Profile</a>
+                        <a class="dropdown-item" href="edit-profile.html">Edit Profile</a>
+                        <a class="dropdown-item" href="settings.html">Settings</a>
+                        <a class="dropdown-item" href="login.html">Logout</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="sidebar" id="sidebar">
+            <!-- sidebar -->
+            <div class="sidebar-inner slimscroll">
+                <div id="sidebar-menu" class="sidebar-menu">
+                    <ul>
+                        @if (Session["LoginRole"].ToString() != "student")
+                        {
+                            <li class="menu-title">Main</li>
+                            <li class="submenu">
+                                <a href="#"><i class="fa fa-user" aria-hidden="true"></i> <span> Teachers</span> <span class="menu-arrow"></span></a>
+                                <ul class="list-unstyled" style="display: none;">
+                                    <li><a href="@Url.Action("Employee", "Home")">Add Teacher</a></li>
+                                    <li><a href="@Url.Action("EmployeeList", "Home")">All Teacher</a></li>
+                                    <li><a href="@Url.Action("PasswordReset", "user")">Password Change</a></li>
+                                </ul>
+                            </li>
+                        }
+                        <li class="submenu">
+                            <a href="#"><i class="fa fa-user" aria-hidden="true"></i> <span> Students</span> <span class="menu-arrow"></span></a>
+                            <ul class="list-unstyled" style="display: none;">
+                                @if (Session["LoginRole"].ToString() != "student")
+                                {
+                                    <li><a href="@Url.Action("Index", "student")">Registration</a></li>
+                                    <li><a href="@Url.Action("StudentList", "student")">All Students</a></li>
+                                }
+                                <li><a href="~/studTest/resultview">Result</a></li>
+
+                            </ul>
+                        </li>
+                        @if (Session["LoginRole"].ToString() != "student")
+                        {
+                            <li class="submenu">
+                                <a href="#"><i class="fa fa-user" aria-hidden="true"></i> <span> Test</span> <span class="menu-arrow"></span></a>
+                                <ul class="list-unstyled" style="display: none;">
+                                    @*<li><a href="@Url.Action("testQuestion", "studTest")">Test Created</a></li>*@
+                                    <li><a href="@Url.Action("Index", "test")">Test Creation</a></li>
+
+                                    <li><a href="@Url.Action("Index", "assignQuestionToTest")">Add Question to Test</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown-submenu">
+                                <a href="#"><i class="fa fa-user" aria-hidden="true"></i> <span> TestQDataBank</span> <span class="menu-arrow"></span></a>
+
+                                <ul class="list-unstyled" style="display: none;">
+                                    <li> <a href="@Url.Action("Index", "testQuestionDatabanks")">MCQS</a></li>
+                                    @*<li> <a href="@Url.Action("fillBlanks", "testQuestionDatabanks")">FillBlanks</a></li>
+                    <li> <a href="@Url.Action("trueFalse", "testQuestionDatabanks")">TrueFalse</a></li>*@
+                                </ul>
+                            </li>
+                            <li class="submenu">
+                                <a href="javascript:void(0);"><i class="fa fa-share-alt" aria-hidden="true"></i> <span>Subjects</span> <span class="menu-arrow"></span></a>
+                                <ul style="display: none;">
+                                    <li>
+                                        <a href="@Url.Action("Subject", "Home")"> add Subject</a>
+                                        <a href="@Url.Action("subjectList", "Home")"> Subject List </a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                        }
+
+
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="page-wrapper">
+            <div class="content container-fluid">
+              
+                @RenderBody()
+                 
+            </div>
+        </div>
+    </div>
+    <div class="sidebar-overlay" data-reff=""></div>
+
+
+    <script type="text/javascript" src="~/assets/js/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="~/assets/js/popper.min.js"></script>
+    <script type="text/javascript" src="~/assets/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/assets/js/jquery.slimscroll.js"></script>
+    <script type="text/javascript" src="~/assets/js/select2.min.js"></script>
+    <script type="text/javascript" src="~/assets/js/moment.min.js"></script>
+    <script type="text/javascript" src="~/assets/js/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript" src="~/assets/js/app.js"></script>
+
+    @RenderSection("Scripts", false)
+</body>
+
+</html>

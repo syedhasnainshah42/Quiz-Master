@@ -1,0 +1,135 @@
+﻿@model IEnumerable<NMDCATEtestPreparatory.Employee>
+@{ 
+
+}
+<div class="page-header">
+    <div class="row">
+        <div class="col-lg-7 col-md-12 col-sm-12 col-12">
+            <h5 class="text-uppercase">All  Teachers List</h5>
+        </div>
+        
+    </div>
+</div>
+<div class="row filter-row">
+    <div class="col-sm-6 col-md-3 col-lg-3 col-xl-2 col-12">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+            <div class="form-group custom-mt-form-group">
+                <input type="text" name="searchbyID" id="searchID" onchange="funsuggestion()" />
+                <label class="control-label">Search By ID</label><i class="bar"></i>
+            </div>
+        </div>
+    </div>
+    </div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="table-responsive">
+            <table class="table table-striped custom-table m-b-0" @*id="tbl"*@>
+                <thead>
+                    <tr>
+                        <th class="text-center">Employee ID</th>
+                        <th class="text-center">Employee Name</th>
+                        <th class="text-center">Employee Father Name </th>
+                        <th class="text-center">Employee DOB</th>
+                        <th class="text-center">Employee Email</th>
+                        <th class="text-center">Employee Contact</th>
+                        <th class="text-center">Update Record</th>
+
+                    </tr>
+                </thead>
+                <tbody id="datalist">
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                <strong>@item.employeeId</strong>
+                            </td>
+                            <td>@item.employeeName</td>
+                            <td>@item.employeeFName</td>
+                            <td>@item.DOB</td>
+                            <td>@item.Email</td>
+                            <td>@item.Contact</td>
+                            <td>
+                                <a href="~/Home/EmployeeEdit1?id=@item.employeeId">Edit</a>
+                            
+                            </td>
+
+                        </tr>
+                    }
+
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<script>
+
+    function funsuggestion() {
+
+        var searchby = $("#searchID").val();
+        alert(searchby);
+        $.ajax({
+                        type: "Get",
+                        url: '@Url.Action("searchByID", "Home")',
+                        contentType: "application/json; charset=utf-8",
+            data: { searchby: searchby},
+                        datatype: "json",
+                        success: function (data) {
+                            console.log(data);
+                            var dd = '';
+                            if (data.data != "") {
+                                dd+='<tr>'
+                                dd += '<td>' + data.data.employeeId+'</td>'
+                                dd += '<td>' + data.data.employeeName+'</td>'
+                                dd += '<td>' + data.data.employeeFName +'</td>'
+                                dd += '<td>' + data.data.DOB+'</td>'
+                                dd += '<td>' + data.data.Email+'</td>'
+                                dd += '<td>' + data.data.Contact +'</td>'
+                                dd+='<td></td></tr>'
+                               
+
+
+
+                                //$("#DOB").val(getDateFormatted(data.data.DOB));
+                                //$("#Email").val(data.data.Email);
+                                //$("#Contact").val(data.data.Contact);
+
+
+
+                            }
+                            $("#datalist").html(dd);
+
+                        },
+                        error: function () {
+                            alert("Error Orrured In server");
+                        }
+                    });
+        }
+        function getDateFormatted(date) {
+            debugger;
+            var pattern = /Date\(([^)]+)\)/;
+            var results = pattern.exec(date);
+            var dt = new Date(parseFloat(results[1]));
+            debugger;
+
+            var gdate = dt.getDate();
+
+
+            var month = (dt.getMonth() + 1);
+
+            return (month) + "/" + gdate + "/" + dt.getFullYear();
+        }
+</script>
+
+@*@section Scripts{
+    <script src="//cdn.datatables.net/1.10.0/js/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" href="//cdn.datatables.net/1.10.0/css/jquery.dataTables.min.css" />
+    <script>
+        $(document).ready(function () {
+            $('#tbl').DataTable({
+               
+            });
+         
+        });
+    </script>
+    }*@

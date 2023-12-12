@@ -1,0 +1,54 @@
+﻿@{
+    ViewBag.Title = "JsonView";
+}
+
+<div class="page-content">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="page-content">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+
+                        <!-- content -->
+                        <div class="content container-fluid">
+                            <div class="page-header">
+                                <div class="row">
+                                    <div class="col-lg-7 col-md-12 col-sm-12 col-12">
+                                        <h5 class="text-uppercase">List Of All Subjects</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <table class="table table-striped custom-table m-b-0" 
+                                <thead>
+                                    <tr>
+                                        <th class="text">Subject ID</th>
+                                        <th class="text">Subject Title</th>
+                                        <th class="text">Class</th>
+
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var i in Model)
+                                    {
+                                        <tr>
+                                            <td>@i.subjectid</td>
+                                            <td>@i.subjectTitle</td>
+                                            <td>@i.Class</td>
+
+                                        </tr>
+                                    }
+                                </tbody>
+
+                            </table>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
